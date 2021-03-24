@@ -1,0 +1,56 @@
+.judul{
+    text-align: center;
+    color: #7B7BA7;
+}
+
+.judul-login{
+    text-align: center;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.row{
+    background-color: white;
+    border-radius: 30px;   
+    position: relative;
+}
+
+.login-back{
+    background-color:rgba(200, 200, 234, 0.45);
+    border-radius: 30px;
+    position: relative;
+}
+
+img{
+    border-radius: 30px;
+    overflow: hidden;
+    position: absolute;
+
+}
+
+.login {
+    width: 532px;
+    height: 361px;  
+    position: absolute; 
+}
+
+.btn1{
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 100%;
+    background-color: #626CCC;
+    color: white;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.btn1:hover{
+    background-color: white;
+    border: 1px solid;
+    color: #626CCC;
+}
+
