@@ -42,3 +42,10 @@
 .icon2{
     width: 50px;
 }
+
+body{
+    background-image: url(../img/undraw_Forms_re_pkrt.svg);
+    background-size:inherit;
+    background-repeat: no-repeat;
+    background-position: center;
+}
