@@ -1,0 +1,45 @@
+.judul{
+    text-align: center;
+    color: #7B7BA7;
+}
+
+.form-judul{
+    color: #293158;
+    text-align: center;
+}
+
+.form-back{
+    background-color:rgba(200, 200, 234, 0.45);
+    border-radius: 30px;
+    position: relative;
+}
+
+.center{
+    text-align: center;
+}
+
+.btn1{
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 100%;
+    background-color: #626CCC;
+    color: white;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.btn1:hover{
+    background-color: white;
+    border: 1px solid;
+    color: #626CCC;
+}
+
+.icon{
+    float: right;
+}
+
+.icon2{
+    width: 50px;
+    color: #626CCC;
+}
