@@ -1,7 +1,9 @@
 <?php
-    
     if(isset($_POST['register-submit'])){
-        include "con-user.php";
+        //Include php
+        require_once "db.con.php";
+        require_once "function.php";
+        //Input Form Field
         $firstname = $_POST['fname'];
         $lastname = $_POST['lname'];
         $job = $_POST['pekerjaan'];
@@ -10,9 +12,31 @@
         $telepon = $_POST['nomor'];
         $username = $_POST['username'];
         $password = $_POST['password'];
+        $tipe_user = "Anggota";
 
-        if(empty($firstname) || empty($lastname) || empty($job) || empty($umur) || empty($email) || empty($telepon) || empty($username) || empty($password)){
-            header('Location: ../Views/register.html?error=emptyfields&user='.$username.'&email='.$email);
+        //Conditions untuk handling error
+        if (emptyInputSiginup($firstname, $lastname, $job, $umur, $email, $telepon, $username, $password) !== false) {
+            header('Location: ../Views/sign-up.php?error=empetyinput');
+            exit();
         }
+        if (invalidUid($username)) {
+            header('Location: ../Views/sign-up.php?error=username');
+            exit();
+        }
+        if (invalidEmail($email)) {
+            header('Location: ../Views/sign-up.php?error=email');
+            exit();
+        }
+        if (UidExist($conn, $username, $email) !== false) {
+            header('Location: ../Views/sign-up.php?error=usernametaken');
+            exit();
+        }
+        
+       
+        createUser($conn, $username, $password, $firstname, $lastname, $umur, $email, $telepon, $job, $tipe_user);
+        user($conn, $username, $password, $tipe_user);
+    }
+    else {
+        header('Location: ../Views/sign-up.php');
     }
 ?>

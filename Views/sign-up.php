@@ -18,7 +18,7 @@
                         <a href="login.html"><img class="icon2" src="../Img/x-circle (2).svg" alt="x"></a>
                     </div>
                     <h4 class="form-judul mx-5 my-4 px-5">Register Account</h4>
-                    <form action="" method="post">
+                    <form action="../php/register.php" method="post">
                         <div class="container px-5">
                             <div class="row gx-5 mt-3">
                               <div class="p-3 col">
@@ -34,7 +34,7 @@
                                     <input class="form-control" type="text" name="pekerjaan" placeholder="Pekerjaan">
                                 </div>
                                  <div class="p-3 mx-4 col-lg-3">
-                                     <input class="form-control" type="number" name="umur" placeholder="Umur">
+                                     <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="umur" placeholder="Umur">
                                  </div>
                             </div>
                             <div class="row justify-content-center">
@@ -44,7 +44,7 @@
                             </div>
                             <div class="row justify-content-center">
                                 <div class="p-3 col-lg-8">
-                                    <input class="form-control" type="number" name="nomor" placeholder="Nomor Ponsel">
+                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="nomor" placeholder="Nomor Ponsel">
                                 </div>
                             </div>
                             <div class="row justify-content-center">
