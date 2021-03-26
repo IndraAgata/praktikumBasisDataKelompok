@@ -1,0 +1,93 @@
+.judul{
+    color: #7B7BA7;
+    text-decoration: solid;
+    text-align: center;
+}
+
+img{
+    width: 100px;
+    height: 180px;
+}
+
+.judul-user{
+    text-align: center;
+    color: #293158;
+}
+
+.tab{
+    background-color: #E4E4F5;
+    width: 200px;
+    font-weight: bold;
+    color: #5656B1;
+    text-align: center;
+    
+}
+
+a:link {
+
+
+    text-decoration: none;
+  
+  
+  }
+  
+  
+  a:visited {
+  
+  
+    text-decoration: none;
+  
+  
+  }
+  
+  
+  a:hover {
+  
+  
+    text-decoration: none;
+  
+  
+  }
+  
+  
+  a:active {
+  
+  
+    text-decoration: none;
+  
+  
+  }
+
+.logout{
+    text-align: right;
+    color: #293158;
+}
+
+.main{
+    background-color:rgba(200, 200, 234, 0.45);
+    border-radius: 30px;
+    position: relative;
+}
+
+.image{
+    width: 480px;
+    height: 262px;
+    padding-top: 50px;
+}
+
+.btn1{
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 363px;
+    background-color: #626CCC;
+    color: white;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.btn1:hover{
+    background-color: white;
+    border: 1px solid;
+    color: #626CCC;
+}

@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/pengembalian.css">
-    <title>Form Pengembalian</title>
+    <link rel="stylesheet" href="../css/approve.css">
+    <title>Rincian Pinjaman</title>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row mx-5 justify-content-center ">
             <div class="row">
-                <div class="col-md-10">
-                    <p class="tab mx-2">Form Pengembalian</p>
+                <div class="col-lg8-2">
+                    <p class="tab mx-2">Rincian Pinjaman</p>
                 </div>
             </div>
         </div>
@@ -41,32 +41,23 @@
                             <h5 class="judul-user">Data Diri</h5> 
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="username" placeholder="Username">
+                                    <input class="form-control" type="text" name="username" placeholder="Username" disabled readonly>
                                 </div>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="nama" placeholder="Nama">
+                                    <input class="form-control" type="text" name="nama" placeholder="Nama" disabled readonly>
                                 </div>
-                            </div>                    
+                            </div>                      
                         </div>
                         <div class="col-lg-5 mx-4 mt-3">
-                            <h5 class="judul-user">Data Pinjaman Dana</h5>
-                            <div class="form-row justify-content-center">
-                                <div class="col-lg-7 mt-3">
-                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="jumlah" placeholder="Jumlah Dana">
-                                    
-                                </div>
-                                <div class="col-lg-4 mx-3 mt-3">
-                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="bunga" placeholder="Bunga">
-                                </div>
-                            </div>
+                            <h5 class="judul-user">Data Peminjam Dana</h5>   
                             <div class="row mt-3 justify-content-center">
                                 <label for="tglpinjam">Tanggal Pinjam</label>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input class="form-control"  type="date" name="tglpinjam">
+                                    <input class="form-control"  type="date" name="tglpinjam" disabled readonly>
                                 </div>
                             </div>
                             <div class="row mt-3 justify-content-center">
@@ -74,24 +65,35 @@
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input class="form-control"  type="date" name="tglbayar">
+                                    <input class="form-control"  type="date" name="tglbayar" disabled readonly>
                                 </div>
-                            </div>
-                            <div class="row mt-3 justify-content-center">
-                                <label for="tglbayar">Tanggal Pembayaran</label>
                             </div>
                             <div class="form-row justify-content-center">
-                                <div class="col-lg-8">
-                                    <input class="form-control"  type="date" name="tglbayar">
+                                <div class="col-lg-7 mt-3">
+                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="jumlah" placeholder="Jumlah Dana" disabled readonly>
+                                    
                                 </div>
-                            </div>              
+                                <div class="col-lg-4 mx-3 mt-3">
+                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="bunga" placeholder="Bunga" disabled readonly>
+                                </div>
+                            </div>
+                            <div class="form-row justify-content-center">
+                                <div class="col-lg-10 mt-3">
+                                    <input class="form-control" type="text" name="total" placeholder="Total Bayar" disabled readonly>
+                                </div>
+                            </div>
+                            <div class="form-row justify-content-center">
+                                <div class="col-ms-2 mt-4">
+                                    <button class="approve">Approve</button>
+                                </div>
+                                <div class="col-ms-2 mt-4">
+                                    <button class="deny">Deny</button>
+                                </div>
+                            </div>      
                         </div>
                         <div class="row p-5">
                             <div class="col">
-                                <button class="btn1" type="submit">Submit</button>
-                            </div>
-                            <div class="col">
-                                <a href="homepage.html"><button class="btn1">Batal</button></a>
+                                <a href="homepage.html"><button class="btn1">Kembali</button></a>
                             </div>
                         </div>
                     </form>

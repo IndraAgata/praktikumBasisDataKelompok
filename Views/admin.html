@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/home.css">
-    <title>Home</title>
+    <link rel="stylesheet" href="../css/approve.css">
+    <title>Home Admin</title>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row mx-5 justify-content-center ">
             <div class="row">
                 <div class="col-lg8-2">
-                    <a href=""><p class="tab mx-2">Home</p></a>
+                    <p class="tab mx-2">Home Admin</p>
                 </div>
             </div>
         </div>
@@ -36,23 +36,23 @@
         <section class="Form my-4 mx-5">
             <div class="container">
                 <div class="main row no-gutters justify-content-center">
-                    <div class="col-lg-5">
-                        <img class="image" src="../img/undraw_online_payments_luau.svg" alt="Pinjam">                       
-                    </div>
-                    <div class="col-lg-5">
-                        <img class="image" src="../img/undraw_Mobile_pay_re_sjb8.svg" alt="Bayar">
-                    </div>
                     <div class="row p-5">
                         <div class="col">
-                            <a href="Form Pinjam.html"><button class="btn1">Pinjam</button></a>
-                        </div>
-                        <div class="col">
-                            <a href="Form Pengembalian.html"><button class="btn1">Bayar</button></a>
+                            <a href="homepage.html"><button class="btn1">Kembali</button></a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
+    <script> 
+        function onlyNumberKey(evt) { 
+            // Only ASCII charactar in that range allowed 
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode 
+            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) 
+            return false; 
+            return true; 
+        } 
+  </script>
 </body>
 </html>
