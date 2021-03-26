@@ -25,7 +25,7 @@
         else{
             $sql = "SELECT * FROM pengguna WHERE username='$user' AND password='$pwd'";
             $result = mysqli_query($conn, $sql);
-
+            
             if (mysqli_num_rows($result)) {
                 $row = mysqli_fetch_assoc($result);
                 if ($row['username'] === $user && $row['password'] === $pwd) {
@@ -33,13 +33,13 @@
                         session_start();
                         $_SESSION['username'] = $row=['username'];
                         $_SESSION['tipe_user'] = $row=['tipe_user'];
-                        header("Location: ../index2.php");
+                        header("Location: ../Views/homepage.php");
                         exit(); 
                     }elseif($row['tipe_user'] === 'Anggota'){
                         session_start();
                         $_SESSION['username'] = $row=['username'];
                         $_SESSION['tipe_user'] = $row=['tipe_user'];
-                        header("Location: ../index2.php");
+                        header("Location: ../Views/homepage.php");
                         exit();
                     }else{
                         header("Location: ../index.php?error=wrong usertype");
