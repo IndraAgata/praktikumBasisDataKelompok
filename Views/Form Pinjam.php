@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-lg-2">
                         <h1 class="judul">Koperasi</h1>
-                        <h4 class="judul-user">Nama</h4>
+                        <h4 class="judul-user"><?=$date['username']?></h4>
                     </div>
                 </div>
             </div>
@@ -41,12 +41,12 @@
                             <h5 class="judul-user">Data Diri</h5> 
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="username" placeholder="Username">
+                                    <input class="form-control" type="text" name="username" placeholder="Username" disabled readonly>
                                 </div>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="nama" placeholder="Nama">
+                                    <input class="form-control" type="text" name="nama" placeholder="Nama" disabled readonly>
                                 </div>
                             </div>                    
                         </div>

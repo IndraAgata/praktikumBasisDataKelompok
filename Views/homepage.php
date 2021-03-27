@@ -74,7 +74,7 @@
                     </div>
                     <div class="row p-5">
                         <div class="col">
-                            <a href="Form Pinjam.html"><button class="btn1">Pinjam</button></a>
+                            <a href="Form Pinjam.php"><button class="btn1">Pinjam</button></a>
                         </div>
                         <div class="col">
                             <a href="Form Pengembalian.html"><button class="btn1">Bayar</button></a>
