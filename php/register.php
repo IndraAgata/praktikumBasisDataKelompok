@@ -16,19 +16,19 @@
 
         //Conditions untuk handling error
         if (emptyInputSiginup($firstname, $lastname, $job, $umur, $email, $telepon, $username, $password) !== false) {
-            header('Location: ../Views/sign-up.php?error=empetyinput');
+            header('Location: ../Views/register.php?error=empetyinput');
             exit();
         }
         if (invalidUid($username)) {
-            header('Location: ../Views/sign-up.php?error=username');
+            header('Location: ../Views/register.php?error=username');
             exit();
         }
         if (invalidEmail($email)) {
-            header('Location: ../Views/sign-up.php?error=email');
+            header('Location: ../Views/register.php?error=email');
             exit();
         }
         if (UidExist($conn, $username, $email) !== false) {
-            header('Location: ../Views/sign-up.php?error=usernametaken');
+            header('Location: ../Views/register.php?error=usernametaken');
             exit();
         }
         
@@ -37,6 +37,6 @@
         user($conn, $username, $password, $tipe_user);
     }
     else {
-        header('Location: ../Views/sign-up.php');
+        header('Location: ../Views/register.php');
     }
 ?>

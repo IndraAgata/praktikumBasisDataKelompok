@@ -31,9 +31,10 @@
                                 <input class="form-control my-3 mx-auto p-4" type="password" name="password" placeholder="Password">
                             </div>
                         </div>
+                        
                         <div class="form-row justify-content-center">
                             <div class="col-lg-7">
-                                <button type="submit" name="login-submit" class="btn1 mt-3 mb-3">Login</button>
+                                <button type="submit" name="submit" class="btn1 mt-3 mb-3">Login</button>
                             </div>
                         </div>
                         <div class="form-row justify-content-center">
