@@ -1,5 +1,6 @@
 <?php
     include "db.con.php";
+    session_start();
     if (isset($_POST['username']) && isset($_POST['password'])) {
         function validate($data){
             $data = trim($data);
@@ -33,13 +34,15 @@
                         session_start();
                         $_SESSION['username'] = $row=['username'];
                         $_SESSION['tipe_user'] = $row=['tipe_user'];
+                        $_SESSION['id'] = $row=['id'];
                         header("Location: ../Views/homepage.php");
                         exit(); 
                     }elseif($row['tipe_user'] === 'Anggota'){
                         session_start();
                         $_SESSION['username'] = $row=['username'];
                         $_SESSION['tipe_user'] = $row=['tipe_user'];
-                        header("Location: ../Views/homepage.php");
+                        $_SESSION['id'] = $row=['id'];
+                        header("Location: ../Views/tes.php");
                         exit();
                     }else{
                         header("Location: ../index.php?error=wrong usertype");

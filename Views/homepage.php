@@ -1,3 +1,10 @@
+<? 
+    include("../php/db.con.php");
+    include("../php/session.php");
+    $user = $_SESSION['username'];
+    $tampil = mysqli_query($conn, "SELECT * FROM pengguna Where username ='$user'");
+    $data = mysqli_fetch_array($tampil);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +21,7 @@
             <div class="row">
                 <div class="col-lg8-2">
                     <a href=""><p class="tab mx-2">Home</p></a>
+                    <h4 class="judul-user"><?=$data['username']?></h4>
                 </div>
             </div>
         </div>
@@ -25,7 +33,7 @@
                     </div>
                     <div class="col-lg-2">
                         <h1 class="judul">Koperasi</h1>
-                        <h4 class="judul-user">Nama</h4>
+                        <h4 class="judul-user"><?=$data['username']?></h4>
                     </div>
                 </div>
             </div>
