@@ -1,9 +1,12 @@
 <?php
     include("../php/db.con.php");
     include("../php/session.php");
-    $tampil = mysqli_query($conn, "SELECT * FROM pengguna WHERE username = '$user' AND id = '$id'");
-    $data = mysqli_fetch_array($tampil)
+    $tampil = mysqli_query($conn, "SELECT username, concat(firstname, ' ', lastname) AS Nama FROM data_pengguna WHERE username = '$user'");
+    $data = mysqli_fetch_array($tampil);
+    $user = $data['username']
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,18 +44,18 @@
         </div>
         <section class="Form my-4 mx-5">
             <div class="container">
-                <div class="main row no-gutters justify-content-center">
-                    <form action="" method="post"></form>
+                <form action="../php/form-pinjam.php" method="post">
+                    <div class="main row no-gutters justify-content-center">    
                         <div class="col-lg-5 mx-4 mt-3">
                             <h5 class="judul-user">Data Diri</h5> 
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="username" value="<?=@$data['username']?>" placeholder="Username" disabled readonly>
+                                    <input class="form-control" type="text" name="username" value="<?=@$user?>" placeholder="Username">
                                 </div>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="nama" placeholder="Nama" disabled readonly>
+                                    <input class="form-control" type="text" name="nama" value="<?=@$data['Nama']?>" placeholder="Nama">
                                 </div>
                             </div>                    
                         </div>
@@ -90,13 +93,13 @@
                             </div> 
                             <div class="form-row mt-3 justify-content-center">
                                 <div class="col-lg-8">
-                                    <textarea class="form-control" placeholder="Deskripsi" aria-label="With textarea"></textarea>
+                                    <textarea class="form-control" name="deskripsi" placeholder="Deskripsi" aria-label="With textarea"></textarea>
                                 </div>
                             </div>                           
                         </div>
                         <div class="row p-5">
                             <div class="col">
-                                <button class="btn1" type="submit">Submit</button>
+                                <button class="btn1" name="submit" type="submit">Submit</button>
                             </div>
                             <div class="col">
                                 <a href="homepage.php"><button class="btn1">Batal</button></a>

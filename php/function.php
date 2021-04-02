@@ -80,8 +80,9 @@
         mysqli_stmt_bind_param($stmt, "sss", $username, $password, $tipe_user);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
+        header('Location: ../Views/login.php');
     }
-    
+
     //Login
     function emptyInputLogin($username, $password) {
         
