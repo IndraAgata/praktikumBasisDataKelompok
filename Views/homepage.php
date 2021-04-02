@@ -1,10 +1,10 @@
-<?  
+<?php
     include("../php/db.con.php");
     include("../php/session.php");
-    $user = $_SESSION['username']
-    $tampil = mysqli_query($conn, "SELECT * FROM pengguna Where 'id' ='$user'");
-    $data = mysqli_fetch_array($tampil);
-            
+    $user = $_SESSION['username'];
+    $id = $_SESSION['id'];
+    $tampil = mysqli_query($conn, "SELECT * FROM pengguna WHERE username = '$user' AND id = '$id'");
+    $data = mysqli_fetch_array($tampil)
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,32 +22,10 @@
             <div class="row">
                 <div class="col-lg8-2">
                     <a href=""><p class="tab mx-2">Home</p></a>
-                    <h4 class="judul-user"><?=$sql['username']?></h4>
                 </div>
             </div>
         </div>
         <div class="row">
-        <table>
-            <tr>
-                <th>No</th>
-                <th>ID</th>
-                <th>username</th>
-                <th>password</th>
-                <th>Tipe User</th>
-            </tr>
-            <?php
-                $no=1;
-                
-            ?>
-                <tr>
-                    <td><?=$no++?></td>
-                    <td><?=$data['id']?></td>
-                    <td><?=$data['username']?></td>
-                    <td><?=$data['password']?></td>
-                    <td><?=$data['tipe_user']?></td>
-                </tr>
-            
-        </table>
             <div class="col">
                 <div class="row px-3">
                     <div class="col-ms-2">

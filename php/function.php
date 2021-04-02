@@ -1,3 +1,4 @@
+<?session_start();?>
 <?php
     function emptyInputSiginup($firstname, $lastname, $job, $umur, $email, $telepon, $username, $password) {
         
