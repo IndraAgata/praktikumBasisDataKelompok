@@ -3,8 +3,8 @@
     include("../php/session.php");
     $tampil = mysqli_query($conn, "SELECT username, concat(firstname, ' ', lastname) AS Nama FROM data_pengguna WHERE username = '$user'");
     $data = mysqli_fetch_array($tampil);
-    $user = $data['username']
 ?>
+
 
 
 <!DOCTYPE html>
@@ -50,12 +50,12 @@
                             <h5 class="judul-user">Data Diri</h5> 
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="username" value="<?=@$user?>" placeholder="Username">
+                                    <input class="form-control" type="text" name="username" value="<?php echo $data['username'];?>" placeholder="Username">
                                 </div>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="nama" value="<?=@$data['Nama']?>" placeholder="Nama">
+                                    <input class="form-control" type="text" name="nama" value="<?php echo $data['Nama'];?>" placeholder="Nama">
                                 </div>
                             </div>                    
                         </div>
@@ -99,7 +99,7 @@
                         </div>
                         <div class="row p-5">
                             <div class="col">
-                                <button class="btn1" name="submit" type="submit">Submit</button>
+                                <button class="btn1" name="submit-form" type="submit">Submit</button>
                             </div>
                             <div class="col">
                                 <a href="homepage.php"><button class="btn1">Batal</button></a>
