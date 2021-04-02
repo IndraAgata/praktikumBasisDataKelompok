@@ -1,3 +1,9 @@
+<?php
+    include("../php/db.con.php");
+    include("../php/session.php");
+    $tampil = mysqli_query($conn, "SELECT * FROM pengguna WHERE username = '$user' AND id = '$id'");
+    $data = mysqli_fetch_array($tampil)
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,12 +31,12 @@
                     </div>
                     <div class="col-lg-2">
                         <h1 class="judul">Koperasi</h1>
-                        <h4 class="judul-user"><?=$date['username']?></h4>
+                        <h4 class="judul-user"><?=$data['username']?></h4>
                     </div>
                 </div>
             </div>
             <div class="col-lg-8 mx-5">
-                <a href=""><h4 class="logout">Logout</h4></a>
+                <a href="../php/logout.php"><h4 class="logout">Logout</h4></a>
             </div>
         </div>
         <section class="Form my-4 mx-5">
@@ -41,7 +47,7 @@
                             <h5 class="judul-user">Data Diri</h5> 
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="username" placeholder="Username" disabled readonly>
+                                    <input class="form-control" type="text" name="username" value="<?=@$data['username']?>" placeholder="Username" disabled readonly>
                                 </div>
                             </div>
                             <div class="form-row justify-content-center">
@@ -93,7 +99,7 @@
                                 <button class="btn1" type="submit">Submit</button>
                             </div>
                             <div class="col">
-                                <a href="homepage.html"><button class="btn1">Batal</button></a>
+                                <a href="homepage.php"><button class="btn1">Batal</button></a>
                             </div>
                         </div>
                     </form>

@@ -1,6 +1,3 @@
-<?php
-    include("../php/session.php");
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +15,7 @@
             <div class="row no-gutters">
                 <div class="col">
                     <div class="icon mx-3 px-1 py-2">
-                        <a href="login.html"><img class="icon2" src="../Img/x-circle (2).svg" alt="x"></a>
+                        <a href="login.php"><img class="icon2" src="../Img/x-circle (2).svg" alt="x"></a>
                     </div>
                     <h4 class="form-judul mx-5 my-4 px-5">Register Account</h4>
                     <form action="../php/register.php" method="post">
@@ -81,5 +78,6 @@
             return true; 
         } 
     </script>
+    <script type="text/javascript" src="CSS/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>

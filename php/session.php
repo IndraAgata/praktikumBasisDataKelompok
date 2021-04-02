@@ -10,3 +10,6 @@ if( !isset($_SESSION['username']) ){
 
 // ambil data user
 
+$user = $_SESSION['username'];
+$id = $_SESSION['id'];
+
