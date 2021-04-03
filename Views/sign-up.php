@@ -60,7 +60,7 @@
                         </div>
                         <div class="form-row justify-content-center">
                             <div class="col-lg-5">
-                                <a href="#"><button type="submit" name="register-submit" class="btn1 my-3">Submit</button></a>
+                                <button type="submit" name="register-submit" class="btn1 my-3">Submit</button>
                             </div>
                         </div>
                     </form>

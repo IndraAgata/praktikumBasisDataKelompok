@@ -15,5 +15,7 @@
         //data akan di simpan baru
         pinjam($conn, $username, $nama, $jumlah, $pinjam, $bayar, $status);
         
+    }else{
+        header('Location: ../Views/homepage.php');
     }
 ?>

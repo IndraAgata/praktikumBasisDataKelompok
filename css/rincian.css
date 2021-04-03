@@ -91,3 +91,14 @@ a:link {
     border: 1px solid;
     color: #626CCC;
 }
+
+.approve{
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 100px;
+    background-color: #62cc97;
+    color: white;
+    border-radius: 30px;
+    font-weight: bold;
+}

@@ -6,9 +6,11 @@
 ?>
 
 <?php
-    $display = mysqli_query($conn, "SELECT * FROM rincian_pinjam WHERE username = '$user'");
+    $display = mysqli_query($conn, "SELECT rincian_pinjam.username, rincian_pinjam.tanggalpinjam, rincian_pinjam.tanggalbayar, rincian_pinjam.jumlah, rincian_pinjam.bunga, rincian_pinjam.total, approval.status_approve, data_pinjam.status FROM rincian_pinjam INNER JOIN data_pinjam ON data_pinjam.username = rincian_pinjam.username INNER JOIN approval ON approval.username = rincian_pinjam.username WHERE approval.username = '$user';");
     $rincian = mysqli_fetch_array($display);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,61 +48,75 @@
         </div>
         <section class="Form my-4 mx-5">
             <div class="container">
-                <form action="" method="post">    
-                    <div class="main row no-gutters justify-content-center">
-                        <div class="col-lg-5 mx-4 mt-3">
-                            <h5 class="judul-user">Data Diri</h5> 
-                            <div class="form-row justify-content-center">
-                                <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="username" value="<?php echo $data['username'];?>" placeholder="Username" disabled readonly>
-                                </div>
+                <div class="main row no-gutters justify-content-center">
+                    <div class="col-lg-5 mx-4 mt-3">
+                        <h5 class="judul-user">Data Diri</h5> 
+                        <div class="form-row justify-content-center">
+                            <div class="col-lg-10 mt-3">
+                                <input class="form-control" type="text" name="username" value="<?php echo $data['username'];?>" placeholder="Username" disabled readonly>
                             </div>
-                            <div class="form-row justify-content-center">
-                                <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="nama" value="<?php echo $data['Nama'];?>"placeholder="Nama" disabled readonly>
-                                </div>
-                            </div>                      
                         </div>
-                        <div class="col-lg-5 mx-4 mt-3">
-                            <h5 class="judul-user">Data Peminjam Dana</h5>   
-                            <div class="row mt-3 justify-content-center">
-                                <label for="tglpinjam">Tanggal Pinjam</label>
+                        <div class="form-row justify-content-center">
+                            <div class="col-lg-10 mt-3">
+                                <input class="form-control" type="text" name="nama" value="<?php echo $data['Nama'];?>"placeholder="Nama" disabled readonly>
                             </div>
-                            <div class="form-row justify-content-center">
-                                <div class="col-lg-8">
-                                    <input class="form-control"  type="date" value="<?php echo $rincian['tanggalpinjam']?>" name="tglpinjam" disabled readonly>
-                                </div>
+                        </div>   
+                        <div class="row mt-3 justify-content-center">
+                            <label for="tglbayar">Status</label>
+                        </div> 
+                        <div class="form-row justify-content-center">
+                            <div class="col-ms-2 mt-4">
+                                <h5 class="judul-user"><?php echo $rincian['status_approve'];?></hh5>
                             </div>
-                            <div class="row mt-3 justify-content-center">
-                                <label for="tglbayar">Batas Pembayaran</label>
+                        </div>                    
+                    </div>
+                    <div class="col-lg-5 mx-4 mt-3">
+                        <h5 class="judul-user">Data Peminjam Dana</h5>   
+                        <div class="row mt-3 justify-content-center">
+                            <label for="tglpinjam">Tanggal Pinjam</label>
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="col-lg-8">
+                                <input class="form-control"  type="date" value="<?php echo $rincian['tanggalpinjam']?>" name="tglpinjam" disabled readonly>
                             </div>
-                            <div class="form-row justify-content-center">
-                                <div class="col-lg-8">
-                                    <input class="form-control"  type="date" value="<?php echo $rincian['tanggalbayar']?>" name="tglbayar" disabled readonly>
-                                </div>
+                        </div>
+                        <div class="row mt-3 justify-content-center">
+                            <label for="tglbayar">Batas Pembayaran</label>
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="col-lg-8">
+                                <input class="form-control"  type="date" value="<?php echo $rincian['tanggalbayar']?>" name="tglbayar" disabled readonly>
                             </div>
-                            <div class="form-row justify-content-center">
-                                <div class="col-lg-7 mt-3">
-                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" value="<?php echo $rincian['jumlah']?>" name="jumlah" placeholder="Jumlah Dana" disabled readonly>
-                                    
-                                </div>
-                                <div class="col-lg-4 mx-3 mt-3">
-                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" value="<?php echo$rincian['bunga']?>" name="bunga" placeholder="Bunga" disabled readonly>
-                                </div>
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="col-lg-7 mt-3">
+                                <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" value="<?php echo $rincian['jumlah']?>" name="jumlah" placeholder="Jumlah Dana" disabled readonly>                    
                             </div>
+                            <div class="col-lg-4 mx-3 mt-3">
+                                <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" value="<?php echo$rincian['bunga']?>" name="bunga" placeholder="Bunga" disabled readonly>
+                            </div>
+                        </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
                                     <input class="form-control" type="text" name="total" value="<?php echo$rincian['jumlah']?>" placeholder="Total Bayar" disabled readonly>
                                 </div>
-                            </div>      
+                            </div> 
+                            <div class="row mt-3 justify-content-center">
+                                <label for="tglbayar">Status</label>
+                            </div>
+                            <div class="form-row justify-content-center">
+                                <div class="col-ms-2 mt-4">
+                                    <h5 class="judul-user"><?php echo $rincian['status']?></h5>
+                                </div>
+                            </div> 
                         </div>
+                        
                         <div class="row p-5">
                             <div class="col">
                                 <a href="homepage.php"><button class="btn1">Kembali</button></a>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>   
             </div>
         </section>
     </div>

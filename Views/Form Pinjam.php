@@ -102,7 +102,7 @@
                                 <button class="btn1" name="submit-form" type="submit">Submit</button>
                             </div>
                             <div class="col">
-                                <a href="homepage.php"><button class="btn1">Batal</button></a>
+                                <a href="homepage.php"><button name="batal" class="btn1">Batal</button></a>
                             </div>
                         </div>
                     </form>
