@@ -53,7 +53,7 @@
                             <a href="Form Pinjam.php"><button class="btn1">Pinjam</button></a>
                         </div>
                         <div class="col">
-                            <a href="Form Pengembalian.html"><button class="btn1">Bayar</button></a>
+                            <a href="Form Pengembalian.php"><button class="btn1">Bayar</button></a>
                         </div>
                     </div>
                 </div>

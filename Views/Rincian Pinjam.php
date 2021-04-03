@@ -46,8 +46,8 @@
         </div>
         <section class="Form my-4 mx-5">
             <div class="container">
-                <div class="main row no-gutters justify-content-center">
-                    <form action="" method="post"></form>
+                <form action="" method="post">    
+                    <div class="main row no-gutters justify-content-center">
                         <div class="col-lg-5 mx-4 mt-3">
                             <h5 class="judul-user">Data Diri</h5> 
                             <div class="form-row justify-content-center">

@@ -1,3 +1,28 @@
+<?php
+    include("../php/db.con.php");
+    include("../php/session.php");
+    $tampil = mysqli_query($conn, "SELECT username, concat(firstname, ' ', lastname) AS Nama FROM data_pengguna WHERE username = '$user'");
+    $data = mysqli_fetch_array($tampil);
+?>
+<?php
+    $display = mysqli_query($conn, "SELECT * FROM rincian_pinjam WHERE username = '$user'");
+    $rincian = mysqli_fetch_array($display);
+    if (isset($_POST['bayar'])) {
+        $sql = "UPDATE data_pinjam SET status = 'Lunas', tanggalbayar = '$_POST[pay]' Where username = '$user'";
+        $query = mysqli_query($conn, $sql);
+        if ($query) {//Jika Bayar sukses
+            echo "<script>
+                      alert('Pembayaran Berhasil!'); 
+                      document.location='homepage.php';
+                  </script>";
+          }else{//Jika Bayar Gagal
+            echo "<script>
+                      alert('Pembayaran GAGAL!! ^_^'); 
+                      document.location='homepage.php';
+                  </script>";
+          }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,28 +50,28 @@
                     </div>
                     <div class="col-lg-2">
                         <h1 class="judul">Koperasi</h1>
-                        <h4 class="judul-user">Nama</h4>
+                        <h4 class="judul-user"><?php echo $data['username'];?></h4>
                     </div>
                 </div>
             </div>
             <div class="col-lg-8 mx-5">
-                <a href=""><h4 class="logout">Logout</h4></a>
+                <a href="../php/logout.php"><h4 class="logout">Logout</h4></a>
             </div>
         </div>
         <section class="Form my-4 mx-5">
             <div class="container">
-                <div class="main row no-gutters justify-content-center">
-                    <form action="" method="post"></form>
+                <form action="" method="post">
+                    <div class="main row no-gutters justify-content-center">    
                         <div class="col-lg-5 mx-4 mt-3">
                             <h5 class="judul-user">Data Diri</h5> 
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="username" placeholder="Username">
+                                    <input class="form-control" type="text" name="username" value="<?php echo $data['username'];?>" placeholder="Username" disabled readonly>
                                 </div>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="nama" placeholder="Nama">
+                                    <input class="form-control" type="text" name="nama" value="<?php echo $data['Nama'];?>"placeholder="Nama" disabled readonly>
                                 </div>
                             </div>                    
                         </div>
@@ -54,11 +79,11 @@
                             <h5 class="judul-user">Data Pinjaman Dana</h5>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-7 mt-3">
-                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="jumlah" placeholder="Jumlah Dana">
+                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" value="<?php echo $rincian['jumlah'];?>"name="jumlah" placeholder="Jumlah Dana" disabled readonly>
                                     
                                 </div>
                                 <div class="col-lg-4 mx-3 mt-3">
-                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="bunga" placeholder="Bunga">
+                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" value="<?php echo $rincian['bunga']?>" name="bunga" placeholder="Bunga" disabled readonly>
                                 </div>
                             </div>
                             <div class="row mt-3 justify-content-center">
@@ -66,7 +91,7 @@
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input class="form-control"  type="date" name="tglpinjam">
+                                    <input class="form-control" value="<?php echo $rincian['tanggalpinjam'];?>" type="date" name="tglpinjam" disabled readonly>
                                 </div>
                             </div>
                             <div class="row mt-3 justify-content-center">
@@ -74,7 +99,7 @@
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input class="form-control"  type="date" name="tglbayar">
+                                    <input class="form-control" value="<?php echo $rincian['tanggalbayar'];?>" type="date" name="batas" disabled readonly>
                                 </div>
                             </div>
                             <div class="row mt-3 justify-content-center">
@@ -82,16 +107,16 @@
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input class="form-control"  type="date" name="tglbayar">
+                                    <input class="form-control"  name="pay" type="date" name="tglbayar">
                                 </div>
                             </div>              
                         </div>
                         <div class="row p-5">
                             <div class="col">
-                                <button class="btn1" type="submit">Submit</button>
+                                <button class="btn1" name="bayar" type="submit">Submit</button>
                             </div>
                             <div class="col">
-                                <a href="homepage.html"><button class="btn1">Batal</button></a>
+                                <a href="homepage.php"><button class="btn1">Batal</button></a>
                             </div>
                         </div>
                     </form>
