@@ -143,7 +143,7 @@
     }
 
     //Form Pinjaman
-    function rincian($conn, $username, $nama, $pinjam, $bayar, $jumlah, $bunga){
+    function rincian($conn, $username, $pinjam, $bayar, $jumlah, $bunga){
         $sql = "INSERT INTO rincian_pinjam (username, nama, tanggalpinjam, tanggalbayar, jumlah, bunga, total)  VALUES(?, ?, ?, ?, ?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -151,7 +151,7 @@
             exit();
         }
 
-        mysqli_stmt_bind_param($stmt, "ssssss", $username, $nama, $pinjam, $bayar, $jumlah, $bunga, $jumlah);
+        mysqli_stmt_bind_param($stmt, "ssssss", $username, $username, $pinjam, $bayar, $jumlah, $bunga, $jumlah);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
     }
