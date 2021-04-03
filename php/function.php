@@ -143,11 +143,24 @@
     }
 
     //Form Pinjaman
-    function pinjamform($conn, $username, $jumlah, $pinjam, $bayar, $bunga, $deskripsi, $jaminan){
-        $sql = "INSERT INTO data_pinjamform (Username, JumlahPinjaman, TanggaPinjam, TanggalKembali, Bunga, DeskripsiPinjam, Jaminan) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    function rincian($conn, $username, $nama, $pinjam, $bayar, $jumlah, $bunga){
+        $sql = "INSERT INTO rincian_pinjam (username, nama, tanggalpinjam, tanggalbayar, jumlah, bunga, total)  VALUES(?, ?, ?, ?, ?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header('Location: ../Views/form-pinjam.php?error=stmtfailed');
+            header('Location: ../Views/form-pinjam.php?error=stmtfailedrincian');
+            exit();
+        }
+
+        mysqli_stmt_bind_param($stmt, "ssssss", $username, $nama, $pinjam, $bayar, $jumlah, $bunga, $jumlah);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    }
+
+    function pinjamform($conn, $username, $jumlah, $pinjam, $bayar, $bunga, $deskripsi, $jaminan){
+        $sql = "INSERT INTO data_form (Username, JumlahPinjaman, TanggaPinjam, TanggalKembali, Bunga, DeskripsiPinjam, Jaminan) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header('Location: ../Views/form-pinjam.php?error=stmtfailedform');
             exit();
         }
 
@@ -160,7 +173,7 @@
         $sql = "INSERT INTO data_pinjam (username, Nama, jumlah, tanggalpinjam, tanggalbayar, status)  VALUES(?, ?, ?, ?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header('Location: ../Views/form-pinjam.php?error=stmtfailed');
+            header('Location: ../Views/form-pinjam.php?error=stmtfailedpinjam');
             exit();
         }
 

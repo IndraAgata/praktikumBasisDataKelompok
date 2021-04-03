@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-lg-2">
                         <h1 class="judul">Koperasi</h1>
-                        <h4 class="judul-user"><?=$data['username']?></h4>
+                        <h4 class="judul-user"><?php echo $data['username'];?></h4>
                     </div>
                 </div>
             </div>

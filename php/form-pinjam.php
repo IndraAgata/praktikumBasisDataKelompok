@@ -13,6 +13,7 @@
         $nama = $_POST['nama'];
         $status = "Belum Lunas";
         //data akan di simpan baru
+        rincian($conn, $username, $nama, $pinjam, $bayar, $jumlah, $bunga);
         pinjamform($conn, $username, $jumlah, $pinjam, $bayar, $bunga, $deskripsi, $jaminan);
         pinjam($conn, $username, $nama, $jumlah, $pinjam, $bayar, $status);
         
