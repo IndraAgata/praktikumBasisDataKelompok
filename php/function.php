@@ -180,6 +180,6 @@
         mysqli_stmt_bind_param($stmt, "ssssss", $username, $nama, $jumlah, $pinjam, $bayar, $status);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
-        header('Location: ../Views/homepage.php');
+        header('Location: ../Views/Rincian Pinjam.php');
     }
 ?>
