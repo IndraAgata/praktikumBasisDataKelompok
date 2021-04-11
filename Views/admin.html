@@ -36,10 +36,42 @@
         <section class="Form my-4 mx-5">
             <div class="container">
                 <div class="main row no-gutters justify-content-center">
-                    
+                    <div class="container align-justify-content-center">
+                        <div class="table-responsive-md">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th rowspan="2">Nama</th>
+                                    <th colspan="2">Tanggal</th>
+                                    <th rowspan="2">Status</th>
+                                    
+                                </tr>
+                                <tr>
+                                    <th>Pinjam</th>
+                                    <th>Bayar</th>
+                                </tr>
+                                <?php
+                                    $no = 1;
+                                    $tampil = mysqli_query($conn, "SELECT * From pengguna order by tanggalpnjam asc");
+                                    while ($data = mysqli_fetch_array($tampil)):
+                                ?>
+                                <div class="row tes">
+                                    <tr>
+                                        <td>Nama</td>
+                                        <td>12-12-2012</td>
+                                        <td>12-12-2012</td>
+                                        <td>Waiting</td>
+                                        <td>
+                                            <button class="btn btn-primary">expand</button>
+                                        </td>
+                                    </tr>
+                                    <?php endwhile;?>
+                                </div>
+                            </table>
+                        </div>
+                    </div>
                     <div class="row p-5">
                         <div class="col">
-                            <a href="homepage.html"><button class="btn1">Kembali</button></a>
+                            <a href="homepage.php"><button class="btn1">Kembali</button></a>
                         </div>
                     </div>
                 </div>

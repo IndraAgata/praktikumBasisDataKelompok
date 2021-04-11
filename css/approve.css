@@ -125,3 +125,8 @@ a:link {
     border: 1px solid;
     color: #cc6262;
 }
+
+th, td{
+    text-align: center;
+    justify-content: center;   
+}
