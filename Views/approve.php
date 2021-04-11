@@ -1,3 +1,54 @@
+<?php
+    include("../php/db.con.php");
+    include("../php/session.php");
+    $tampil = mysqli_query($conn, "SELECT * FROM pengguna WHERE username = '$user' AND id = '$id'");
+    $data = mysqli_fetch_array($tampil)  
+?>
+
+<?php
+    if (isset($_GET['approve'])) {
+        //data akan di approve
+        $approve = mysqli_query($conn, "UPDATE approval set status_approve = 'Approved' WHERE username = '$_GET[id]'");
+        if ($approve) {//Jika approve sukses
+        echo "<script>
+                    alert('Approve data sukses!'); 
+                    document.location='admin.php';
+                </script>";
+        }else{//Jika approve Gagal
+        echo "<script>
+                    alert('Approve data GAGAL!! ^_^'); 
+                    document.location='approve.php';
+                </script>";
+        }
+    }elseif (isset($_GET['deny'])) {
+        $approve = mysqli_query($conn, "UPDATE approval set status_approve = 'Deny' WHERE username = '$rincian[username]'");
+        if ($approve) {//Jika approve sukses
+        echo "<script>
+                    alert('Deny data sukses!'); 
+                    document.location='admin.php';
+                </script>";
+        }else{//Jika approve Gagal
+        echo "<script>
+                    alert('Deny data GAGAL!! ^_^'); 
+                    document.location='approve.php';
+                </script>";
+        }
+    }
+        
+?>
+
+<?php
+    //Pengujian tombol detail di klik
+    if (isset($_GET['hal'])) {
+        //Pengujian jika detail data
+        if ($_GET['hal'] == "detail") {
+            //tampilkan data 
+            $display = mysqli_query($conn, "SELECT rincian_pinjam.username, data_pinjam.Nama, rincian_pinjam.tanggalpinjam, rincian_pinjam.tanggalbayar, rincian_pinjam.jumlah, rincian_pinjam.bunga, rincian_pinjam.total FROM rincian_pinjam Inner Join data_pinjam On rincian_pinjam.username = data_pinjam.username WHERE data_pinjam.Nama = '$_GET[name]';");
+            $rincian = mysqli_fetch_array($display);
+        }
+      }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,12 +76,12 @@
                     </div>
                     <div class="col-lg-2">
                         <h1 class="judul">Koperasi</h1>
-                        <h4 class="judul-user">Nama</h4>
+                        <h4 class="judul-user"><?php echo $data['username'];?></h4>
                     </div>
                 </div>
             </div>
             <div class="col-lg-8 mx-5">
-                <a href=""><h4 class="logout">Logout</h4></a>
+                <a href="../php/logout.php"><h4 class="logout">Logout</h4></a>
             </div>
         </div>
         <section class="Form my-4 mx-5">
@@ -41,12 +92,12 @@
                             <h5 class="judul-user">Data Diri</h5> 
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="username" placeholder="Username" disabled readonly>
+                                    <input class="form-control" type="text" value="<?php echo $rincian['username'];?>" name="username" placeholder="Username" disabled readonly>
                                 </div>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="nama" placeholder="Nama" disabled readonly>
+                                    <input class="form-control" type="text" value="<?php echo $rincian['Nama'];?>"name="nama" placeholder="Nama" disabled readonly>
                                 </div>
                             </div>                      
                         </div>
@@ -57,7 +108,7 @@
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input class="form-control"  type="date" name="tglpinjam" disabled readonly>
+                                    <input class="form-control"  type="date" value="<?php echo $rincian['tanggalpinjam'];?>" name="tglpinjam" disabled readonly>
                                 </div>
                             </div>
                             <div class="row mt-3 justify-content-center">
@@ -65,29 +116,29 @@
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input class="form-control"  type="date" name="tglbayar" disabled readonly>
+                                    <input class="form-control"  type="date" value="<?php echo $rincian['tanggalbayar'];?>" name="tglbayar" disabled readonly>
                                 </div>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-7 mt-3">
-                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="jumlah" placeholder="Jumlah Dana" disabled readonly>
+                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" value="<?php echo $rincian['jumlah'];?>" type="text" name="jumlah" placeholder="Jumlah Dana" disabled readonly>
                                     
                                 </div>
                                 <div class="col-lg-4 mx-3 mt-3">
-                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="bunga" placeholder="Bunga" disabled readonly>
+                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" value="<?php echo $rincian['bunga'];?>"name="bunga" placeholder="Bunga" disabled readonly>
                                 </div>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="total" placeholder="Total Bayar" disabled readonly>
+                                    <input class="form-control" type="text" value="<?php echo $rincian['total'];?>" name="total" placeholder="Total Bayar" disabled readonly>
                                 </div>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-ms-2 mt-4">
-                                    <button class="approve" name="approve">Approve</button>
+                                    <a href="approve.php?hal=approve&id=<?php echo $rincian['username'];?>"><button class="approve" name="approve">Approve</button></a>
                                 </div>
                                 <div class="col-ms-2 mt-4">
-                                    <button class="deny" name="deny">Deny</button>
+                                    <a href=""><button class="deny" name="deny">Deny</button></a>
                                 </div>
                             </div>      
                         </div>

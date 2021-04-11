@@ -128,17 +128,27 @@
         }
 
         $pas = $uidExist['password'];
+        $type = $uidExist['tipe_user'];
 
         if ($pas !== $password) {
             header('Location: ../Views/login.php?error=wrongpassword');
             exit();
         }
         elseif ($pas == $password) {
-            session_start();
-            $_SESSION['username'] = $uidExist['username'];
-            $_SESSION['id'] = $uidExist['id'];
-            header('Location: ../Views/homepage.php');
-            exit();
+            if ($type == "Anggota") {
+                session_start();
+                $_SESSION['username'] = $uidExist['username'];
+                $_SESSION['id'] = $uidExist['id'];
+                header('Location: ../Views/homepage.php');
+                exit();
+            }elseif ($type == "Admin") {
+                session_start();
+                $_SESSION['username'] = $uidExist['username'];
+                $_SESSION['id'] = $uidExist['id'];
+                header('Location: ../Views/admin.php');
+                exit();
+            }
+            
         }
     }
 

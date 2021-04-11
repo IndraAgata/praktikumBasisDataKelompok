@@ -1,3 +1,9 @@
+<?php
+    include("../php/db.con.php");
+    include("../php/session.php");
+    $tampil = mysqli_query($conn, "SELECT * FROM pengguna WHERE username = '$user' AND id = '$id'");
+    $data = mysqli_fetch_array($tampil)
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,12 +31,12 @@
                     </div>
                     <div class="col-lg-2">
                         <h1 class="judul">Koperasi</h1>
-                        <h4 class="judul-user">Nama</h4>
+                        <h4 class="judul-user"><?php echo $data['username'];?></h4>
                     </div>
                 </div>
             </div>
             <div class="col-lg-8 mx-5">
-                <a href=""><h4 class="logout">Logout</h4></a>
+                <a href="../php/logout.php"><h4 class="logout">Logout</h4></a>
             </div>
         </div>
         <section class="Form my-4 mx-5">
@@ -38,34 +44,37 @@
                 <div class="main row no-gutters justify-content-center">
                     <div class="container align-justify-content-center">
                         <div class="table-responsive-md">
-                            <table class="table table-bordered">
+                            <table class="table table-borderless">
+                                <thead>
                                 <tr>
-                                    <th rowspan="2">Nama</th>
+                                    <th class="rowspan" rowspan="2">Nama</th>
                                     <th colspan="2">Tanggal</th>
-                                    <th rowspan="2">Status</th>
+                                    <th class="rowspan" rowspan="2">Status</th>
                                     
                                 </tr>
                                 <tr>
                                     <th>Pinjam</th>
                                     <th>Bayar</th>
                                 </tr>
+                                </thead>
                                 <?php
                                     $no = 1;
-                                    $tampil = mysqli_query($conn, "SELECT * From pengguna order by tanggalpnjam asc");
-                                    while ($data = mysqli_fetch_array($tampil)):
+                                    $tampil = mysqli_query($conn, "SELECT * FROM data_pinjam INNER JOIN approval ON data_pinjam.username = approval.username ORDER BY tanggalpinjam ASC");
+                                    while ($sql = mysqli_fetch_array($tampil)):
                                 ?>
-                                <div class="row tes">
+                                <tbody>
                                     <tr>
-                                        <td>Nama</td>
-                                        <td>12-12-2012</td>
-                                        <td>12-12-2012</td>
-                                        <td>Waiting</td>
+                                        <td><?php echo $sql['Nama'];?></td>
+                                        <td><?php echo $sql['tanggalpinjam'];?></td>
+                                        <td><?php echo $sql['tanggalbayar'];?></td>
+                                        <td><?php echo $sql['status_approve'];?></td>
                                         <td>
-                                            <button class="btn btn-primary">expand</button>
+                                            <a href="approve.php?hal=detail&name=<?=$sql['Nama']?>"><button class="btn btn-primary btn-sm">detail</button></a>
                                         </td>
                                     </tr>
                                     <?php endwhile;?>
-                                </div>
+                                </tbody>
+                               
                             </table>
                         </div>
                     </div>
