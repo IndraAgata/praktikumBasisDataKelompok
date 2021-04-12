@@ -6,32 +6,34 @@
 ?>
 
 <?php
-    if (isset($_GET['approve'])) {
-        //data akan di approve
-        $approve = mysqli_query($conn, "UPDATE approval set status_approve = 'Approved' WHERE username = '$_GET[id]'");
-        if ($approve) {//Jika approve sukses
-        echo "<script>
-                    alert('Approve data sukses!'); 
-                    document.location='admin.php';
-                </script>";
-        }else{//Jika approve Gagal
-        echo "<script>
-                    alert('Approve data GAGAL!! ^_^'); 
-                    document.location='approve.php';
-                </script>";
-        }
-    }elseif (isset($_GET['deny'])) {
-        $approve = mysqli_query($conn, "UPDATE approval set status_approve = 'Deny' WHERE username = '$rincian[username]'");
-        if ($approve) {//Jika approve sukses
-        echo "<script>
-                    alert('Deny data sukses!'); 
-                    document.location='admin.php';
-                </script>";
-        }else{//Jika approve Gagal
-        echo "<script>
-                    alert('Deny data GAGAL!! ^_^'); 
-                    document.location='approve.php';
-                </script>";
+    if (isset($_GET['hal'])){
+        if ($_GET['hal'] == "approve") {
+            //data akan di approve
+            $approve = mysqli_query($conn, "UPDATE approval set status_approve = 'Approved' WHERE username = '$_GET[id]'");
+            if ($approve) {//Jika approve sukses
+            echo "<script>
+                        alert('Approve data sukses!'); 
+                        document.location='admin.php';
+                    </script>";
+            }else{//Jika approve Gagal
+            echo "<script>
+                        alert('Approve data GAGAL!! ^_^'); 
+                        document.location='approve.php';
+                    </script>";
+            }
+        }elseif ($_GET['hal'] =="deny") {
+            $approve = mysqli_query($conn, "UPDATE approval set status_approve = 'Deny' WHERE username = '$_GET[id]'");
+            if ($approve) {//Jika approve sukses
+            echo "<script>
+                        alert('Deny data sukses!'); 
+                        document.location='admin.php';
+                    </script>";
+            }else{//Jika approve Gagal
+            echo "<script>
+                        alert('Deny data GAGAL!! ^_^'); 
+                        document.location='approve.php';
+                    </script>";
+            }
         }
     }
         
@@ -135,10 +137,10 @@
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-ms-2 mt-4">
-                                    <a href="approve.php?hal=approve&id=<?php echo $rincian['username'];?>"><button class="approve" name="approve">Approve</button></a>
+                                    <a href="approve.php?hal=approve&id=<?=$rincian['username']?>"><button class="approve" name="approve">Approve</button></a>
                                 </div>
                                 <div class="col-ms-2 mt-4">
-                                    <a href=""><button class="deny" name="deny">Deny</button></a>
+                                    <a href="approve.php?hal=deny&id=<?=$rincian['username']?>"><button class="deny" name="deny">Deny</button></a>
                                 </div>
                             </div>      
                         </div>
