@@ -21,6 +21,8 @@
                       document.location='homepage.php';
                   </script>";
           }
+    }elseif (isset($_POST['batal'])) {
+        header('Location: ../Views/homepage.php');
     }
 ?>
 <!DOCTYPE html>
@@ -116,7 +118,7 @@
                                 <button class="btn1" name="bayar" type="submit">Submit</button>
                             </div>
                             <div class="col">
-                                <a href="homepage.php"><button class="btn1">Batal</button></a>
+                            <a href="homepage.php"><button name="batal" class="btn1">Batal</button></a>
                             </div>
                         </div>
                     </form>
