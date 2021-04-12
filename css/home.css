@@ -91,3 +91,22 @@ a:link {
     border: 1px solid;
     color: #626CCC;
 }
+
+.btn2{
+    border: none;
+    outline: none;
+    height: 25px;
+    width: 125px;
+    background-color: #626CCC;
+    color: white;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 12px;
+    position: sticky;
+}
+
+.btn2:hover{
+    background-color: white;
+    border: 1px solid;
+    color: #626CCC;
+}

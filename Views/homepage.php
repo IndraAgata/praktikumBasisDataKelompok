@@ -37,11 +37,15 @@
             </div>
             <div class="col-lg-8 mx-5">
                 <a href="../php/logout.php"><h4 class="logout">Logout</h4></a>
+                
             </div>
         </div>
         <section class="Form my-4 mx-5">
-            <div class="container">
-                <div class="main row no-gutters justify-content-center">
+            <div class="container main">
+                <div class="row px-5 py-2">
+                    <a href="Rincian Pinjam.php"><button class="btn2">Rincian Pinjam</button></a>
+                </div>
+                <div class="row no-gutters justify-content-center">  
                     <div class="col-lg-5">
                         <img class="image" src="../img/undraw_online_payments_luau.svg" alt="Pinjam">                       
                     </div>
