@@ -57,7 +57,7 @@
     }
 
     function createUser($conn, $username, $password, $firstname, $lastname, $umur, $email, $telepon, $job) {
-        $sql = "INSERT INTO `data_pengguna`(`username`, `password`, `firstname`, `lastname`, `umur`, `email`, `notlpn`, `pekerjaan`) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO data_pengguna (username, password, firstname, lastname, umur, email, notlpn, pekerjaan) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header('Location: ../Views/sign-up.php?error=stmtfailed');
