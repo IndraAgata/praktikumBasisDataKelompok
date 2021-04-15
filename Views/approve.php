@@ -1,8 +1,8 @@
 <?php
     include("../php/db.con.php");
     include("../php/session.php");
-    $tampil = mysqli_query($conn, "SELECT * FROM pengguna WHERE username = '$user' AND id = '$id'");
-    $data = mysqli_fetch_array($tampil)  
+    $tampil = mysqli_query($conn, "SELECT * FROM user WHERE username = '$user' AND id = '$id'");
+    $data = mysqli_fetch_array($tampil)
 ?>
 
 <?php

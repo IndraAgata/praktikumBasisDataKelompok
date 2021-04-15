@@ -1,7 +1,7 @@
 <?php
     include("../php/db.con.php");
     include("../php/session.php");
-    $tampil = mysqli_query($conn, "SELECT * FROM pengguna WHERE username = '$user' AND id = '$id'");
+    $tampil = mysqli_query($conn, "SELECT * FROM user WHERE username = '$user' AND id = '$id'");
     $data = mysqli_fetch_array($tampil)
 ?>
 <!DOCTYPE html>
@@ -59,7 +59,7 @@
                                 </thead>
                                 <?php
                                     $no = 1;
-                                    $tampil = mysqli_query($conn, "SELECT * FROM data_pinjam INNER JOIN approval ON data_pinjam.username = approval.username ORDER BY tanggalpinjam ASC");
+                                    $tampil = mysqli_query($conn, "SELECT * FROM admin_approve");
                                     while ($sql = mysqli_fetch_array($tampil)):
                                 ?>
                                 <tbody>
