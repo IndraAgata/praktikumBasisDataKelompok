@@ -153,18 +153,7 @@
     }
 
     //Form Pinjaman
-    function rincian($conn, $username, $pinjam, $bayar, $jumlah, $bunga){
-        $sql = "INSERT INTO rincian_pinjam (username, nama, tanggalpinjam, tanggalbayar, jumlah, bunga, total)  VALUES(?, ?, ?, ?, ?, ?, ?);";
-        $stmt = mysqli_stmt_init($conn);
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header('Location: ../Views/form-pinjam.php?error=stmtfailedrincian');
-            exit();
-        }
-
-        mysqli_stmt_bind_param($stmt, "ssssss", $username, $username, $pinjam, $bayar, $jumlah, $bunga, $jumlah);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-    }
+    
 
     function pinjamform($conn, $username, $jumlah, $pinjam, $bayar, $bunga, $deskripsi, $jaminan){
         $sql = "INSERT INTO data_form (Username, JumlahPinjaman, TanggaPinjam, TanggalKembali, Bunga, DeskripsiPinjam, Jaminan) VALUES (?, ?, ?, ?, ?, ?, ?);";
@@ -188,6 +177,50 @@
         }
 
         mysqli_stmt_bind_param($stmt, "ssssss", $username, $nama, $jumlah, $pinjam, $bayar, $status);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        header('Location: ../Views/Rincian Pinjam.php');
+    }
+
+    function approve($conn, $username){
+        $approval = "Waiting";
+        $sql = "INSERT INTO approval (username, status_approve)  VALUES(?, ?);";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header('Location: ../Views/form-pinjam.php?error=stmtfailedpinjam');
+            exit();
+        }
+
+        mysqli_stmt_bind_param($stmt, "ss", $username, $approval);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        header('Location: ../Views/Rincian Pinjam.php');
+    }
+
+    function rincian($conn, $username, $jumlah, $pinjam, $bayar, $bunga){
+        $sql = "INSERT INTO `rincian_pinjam` (`username`, `nama`, `tanggalpinjam`, `tanggalbayar`, `jumlah`, `bunga`, `total`) VALUES(?, ?, ?, ?, ?, ?, ?);";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header('Location: ../Views/form-pinjam.php?error=stmtfailedpinjam');
+            exit();
+        }
+
+        mysqli_stmt_bind_param($stmt, "sssssss", $username, $username, $pinjam, $bayar, $jumlah, $bunga, $jumlah);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        header('Location: ../Views/Rincian Pinjam.php');
+    }
+
+
+    function data($conn, $username, $jumlah, $pinjam, $bayar, $bunga, $deskripsi, $jaminan){
+        $sql = "INSERT INTO `data_form` (`Username`, `JumlahPinjaman`, `TanggaPinjam`, `TanggalKembali`, `Bunga`, `DeskripsiPinjam`, `Jaminan`) VALUES(?, ?, ?, ?, ?, ?, ?);";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header('Location: ../Views/form-pinjam.php?error=stmtfailedpinjam');
+            exit();
+        }
+
+        mysqli_stmt_bind_param($stmt, "sssssss", $username, $jumlah, $pinjam, $bayar, $bunga, $deskripsi, $jaminan);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         header('Location: ../Views/Rincian Pinjam.php');

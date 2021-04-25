@@ -10,17 +10,25 @@
     if (isset($_POST['bayar'])) {
         $sql = "UPDATE data_pinjam SET status = 'Lunas', tanggalbayar = '$_POST[pay]' Where username = '$user'";
         $query = mysqli_query($conn, $sql);
-        if ($query) {//Jika Bayar sukses
-            echo "<script>
-                      alert('Pembayaran Berhasil!'); 
-                      document.location='homepage.php';
-                  </script>";
-          }else{//Jika Bayar Gagal
-            echo "<script>
-                      alert('Pembayaran GAGAL!! ^_^'); 
-                      document.location='homepage.php';
-                  </script>";
-          }
+        if ($query) {
+            $hapus = "DELETE FROM data_form WHERE username = '$user'";
+            $delete = mysqli_query($conn, $hapus);
+            if ($delete) {
+                $rincian = "DELETE FROM rincian_pinjam WHERE username = '$user'";
+                $delrincian = mysqli_query($conn, $rincian);
+                if ($rincian) {//Jika Bayar sukses
+                    echo "<script>
+                              alert('Pembayaran Berhasil!'); 
+                              document.location='homepage.php';
+                          </script>";
+                  }else{//Jika Bayar Gagal
+                    echo "<script>
+                              alert('Pembayaran GAGAL!! ^_^'); 
+                              document.location='homepage.php';
+                          </script>";
+                  }
+            }
+        }
     }elseif (isset($_POST['batal'])) {
         header('Location: ../Views/homepage.php');
     }

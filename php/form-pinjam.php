@@ -14,7 +14,9 @@
         $status = "Belum Lunas";
         //data akan di simpan baru
         pinjam($conn, $username, $nama, $jumlah, $pinjam, $bayar, $status);
-        
+        approve($conn, $username);
+        rincian($conn, $username, $jumlah, $pinjam, $bayar, $bunga);
+        data($conn, $username, $jumlah, $pinjam, $bayar, $bunga, $deskripsi, $jaminan);
     }else{
         header('Location: ../Views/homepage.php');
     }
