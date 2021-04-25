@@ -10,17 +10,20 @@
         if ($_GET['hal'] == "approve") {
             //data akan di approve
             $approve = mysqli_query($conn, "UPDATE approval set status_approve = 'Approved' WHERE username = '$_GET[id]'");
-            if ($approve) {//Jika approve sukses
-            echo "<script>
-                        alert('Approve data sukses!'); 
-                        document.location='admin.php';
-                    </script>";
-            }else{//Jika approve Gagal
-            echo "<script>
-                        alert('Approve data GAGAL!! ^_^'); 
-                        document.location='approve.php';
-                    </script>";
-            }
+            if ($approve) {
+                $log = mysqli_query($conn, "UPDATE log SET status_approve = 'Approved' WHERE username = '$_GET[id]'");
+                if ($approve) {//Jika approve sukses
+                    echo "<script>
+                                alert('Approve data sukses!'); 
+                                document.location='admin.php';
+                            </script>";
+                    }else{//Jika approve Gagal
+                    echo "<script>
+                                alert('Approve data GAGAL!! ^_^'); 
+                                document.location='approve.php';
+                            </script>";
+                    }
+            }    
         }elseif ($_GET['hal'] =="deny") {
             $approve = mysqli_query($conn, "UPDATE approval set status_approve = 'Deny' WHERE username = '$_GET[id]'");
             if ($approve) {//Jika approve sukses
@@ -45,7 +48,7 @@
         //Pengujian jika detail data
         if ($_GET['hal'] == "detail") {
             //tampilkan data 
-            $display = mysqli_query($conn, "SELECT rincian_pinjam.username, data_pinjam.Nama, rincian_pinjam.tanggalpinjam, rincian_pinjam.tanggalbayar, rincian_pinjam.jumlah, rincian_pinjam.bunga, rincian_pinjam.total FROM rincian_pinjam Inner Join data_pinjam On rincian_pinjam.username = data_pinjam.username WHERE data_pinjam.Nama = '$_GET[name]';");
+            $display = mysqli_query($conn, "SELECT rincian_pinjam.username, data_pinjam.Nama, rincian_pinjam.tanggalpinjam, rincian_pinjam.tanggalbayar, rincian_pinjam.jumlah, rincian_pinjam.bunga, rincian_pinjam.total FROM rincian_pinjam Inner Join data_pinjam On rincian_pinjam.username = data_pinjam.username WHERE data_pinjam.username = '$_GET[name]';");
             $rincian = mysqli_fetch_array($display);
         }
       }
@@ -146,7 +149,7 @@
                         </div>
                         <div class="row p-5">
                             <div class="col">
-                                <a href="homepage.php"><button class="btn1">Kembali</button></a>
+                                <a href="admin.php"><button class="btn1">Kembali</button></a>
                             </div>
                         </div>
                     </form>

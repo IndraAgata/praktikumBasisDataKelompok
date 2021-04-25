@@ -4,6 +4,7 @@
     $tampil = mysqli_query($conn, "SELECT * FROM user WHERE username = '$user' AND id = '$id'");
     $data = mysqli_fetch_array($tampil)
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,46 +42,58 @@
         </div>
         <section class="Form my-4 mx-5">
             <div class="container">
-                <div class="main row no-gutters justify-content-center">
+                <div class="main row no-gutters">
+                <div class="row px-5 py-2">
+                    <a href="admin.php?hal=log"><button onclick="hidedetail()" class="btn2">Log</button></a>
+                </div>
+                <?php
+                    if (isset($_GET['hal'])) {
+                        if ($_GET['hal'] == 'log') {
+                            echo '<div class="row px-1 py-2">
+                            <a href="admin.php"><button class="btn2">Kembali</button></a>
+                        </div>';
+                        }
+                    }
+                ?>
                     <div class="container align-justify-content-center">
                         <div class="table-responsive-md">
                             <table class="table table-borderless">
                                 <thead>
                                 <tr>
-                                    <th class="rowspan" rowspan="2">Nama</th>
-                                    <th colspan="2">Tanggal</th>
-                                    <th class="rowspan" rowspan="2">Status</th>
+                                    <th>Nama</th>
+                                    <th>Tanggal Pinjam</th>
+                                    <th>Tanggal Bayar</th>
+                                    <th class="rowspan colspan" colspan="2" rowspan="2">Status</th>
                                     
-                                </tr>
-                                <tr>
-                                    <th>Pinjam</th>
-                                    <th>Bayar</th>
                                 </tr>
                                 </thead>
                                 <?php
                                     $no = 1;
-                                    $tampil = mysqli_query($conn, "SELECT * FROM admin_approve");
+                                    if (isset($_GET['hal'])) {
+                                        if ($_GET['hal'] == "log") {
+                                            $tampil = mysqli_query($conn, "SELECT * FROM log");
+                                        }
+                                    }
+                                    else {
+                                        $tampil = mysqli_query($conn, "SELECT * FROM admin_approve");
+                                    }
                                     while ($sql = mysqli_fetch_array($tampil)):
                                 ?>
                                 <tbody>
                                     <tr>
-                                        <td><?php echo $sql['Nama'];?></td>
+                                        <td><?php echo $sql['username'];?></td>
                                         <td><?php echo $sql['tanggalpinjam'];?></td>
                                         <td><?php echo $sql['tanggalbayar'];?></td>
                                         <td><?php echo $sql['status_approve'];?></td>
-                                        <td>
-                                            <a href="approve.php?hal=detail&name=<?=$sql['Nama']?>"><button class="btn btn-primary btn-sm">detail</button></a>
+                                        <td><?php echo $sql['status']?></td>
+                                        <td class="detail">
+                                            <a href="approve.php?hal=detail&name=<?=$sql['username']?>"><button class="btn btn-primary btn-sm">detail</button></a>
                                         </td>
                                     </tr>
                                     <?php endwhile;?>
                                 </tbody>
                                
                             </table>
-                        </div>
-                    </div>
-                    <div class="row p-5">
-                        <div class="col">
-                            <a href="homepage.php"><button class="btn1">Kembali</button></a>
                         </div>
                     </div>
                 </div>
@@ -94,7 +107,11 @@
             if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) 
             return false; 
             return true; 
-        } 
+        }
+        
+        function hidedetail() {
+            document.getElementsByClassName("detail").style.visibility = "none";
+        }                                             
   </script>
 </body>
 </html>

@@ -17,6 +17,8 @@
         approve($conn, $username);
         rincian($conn, $username, $jumlah, $pinjam, $bayar, $bunga);
         data($conn, $username, $jumlah, $pinjam, $bayar, $bunga, $deskripsi, $jaminan);
+        $log = "INSERT INTO log (username, pinjam, bayar, status, status_approve) SELECT * FROM admin_approve Where username = '$username'";
+        $sendlog = mysqli_query($conn, $log);
     }else{
         header('Location: ../Views/homepage.php');
     }

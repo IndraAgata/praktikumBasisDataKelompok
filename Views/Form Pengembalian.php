@@ -16,17 +16,24 @@
             if ($delete) {
                 $rincian = "DELETE FROM rincian_pinjam WHERE username = '$user'";
                 $delrincian = mysqli_query($conn, $rincian);
-                if ($rincian) {//Jika Bayar sukses
-                    echo "<script>
-                              alert('Pembayaran Berhasil!'); 
-                              document.location='homepage.php';
-                          </script>";
-                  }else{//Jika Bayar Gagal
-                    echo "<script>
-                              alert('Pembayaran GAGAL!! ^_^'); 
-                              document.location='homepage.php';
-                          </script>";
-                  }
+                if ($delrincian) {
+                    $pinjam = "DELETE FROM data_pinjam WHERE username = '$user'";
+                    $delpinjam = mysqli_query($conn, $pinjam);
+                    if ($delpinjam) {
+                        $approve = "DELETE FROM approval WHERE username = '$user'";
+                        $delapprove = mysqli_query($conn, $approve);
+                        if ($rincian) {//Jika Bayar sukses
+                            echo "<script> 
+                                    document.location='homepage.php';
+                                </script>";
+                        }else{//Jika Bayar Gagal
+                            echo "<script>
+                                    alert('Pembayaran GAGAL!! ^_^'); 
+                                    document.location='homepage.php';
+                                </script>";
+                        }
+                    }
+                }
             }
         }
     }elseif (isset($_POST['batal'])) {

@@ -50,12 +50,12 @@
                             <h5 class="judul-user">Data Diri</h5> 
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="username" value="<?php echo $data['username'];?>" placeholder="Username">
+                                    <input class="form-control" type="text" name="username" value="<?php echo $data['username'];?>" placeholder="Username" readonly>
                                 </div>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="nama" value="<?php echo $data['Nama'];?>" placeholder="Nama">
+                                    <input class="form-control" type="text" name="nama" value="<?php echo $data['Nama'];?>" placeholder="Nama" readonly>
                                 </div>
                             </div>                    
                         </div>
