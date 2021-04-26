@@ -44,7 +44,7 @@
             <div class="container">
                 <div class="main row no-gutters">
                 <div class="row px-5 py-2">
-                    <a href="admin.php?hal=log"><button onclick="hidedetail()" class="btn2">Log</button></a>
+                    <a href="admin.php?hal=log"><button class="btn2">Log</button></a>
                 </div>
                 <?php
                     if (isset($_GET['hal'])) {
@@ -86,7 +86,7 @@
                                         <td><?php echo $sql['tanggalbayar'];?></td>
                                         <td><?php echo $sql['status_approve'];?></td>
                                         <td><?php echo $sql['status']?></td>
-                                        <td class="detail">
+                                        <td>
                                             <a href="approve.php?hal=detail&name=<?=$sql['username']?>"><button class="btn btn-primary btn-sm">detail</button></a>
                                         </td>
                                     </tr>
@@ -107,11 +107,7 @@
             if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) 
             return false; 
             return true; 
-        }
-        
-        function hidedetail() {
-            document.getElementsByClassName("detail").style.visibility = "none";
-        }                                             
+        }                                            
   </script>
 </body>
 </html>
