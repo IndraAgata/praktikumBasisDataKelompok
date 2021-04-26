@@ -8,7 +8,7 @@
     $display = mysqli_query($conn, "SELECT * FROM rincian_pinjam WHERE username = '$user'");
     $rincian = mysqli_fetch_array($display);
     if (isset($_POST['bayar'])) {
-        $sql = "UPDATE data_pinjam SET status = 'Lunas', tanggalbayar = '$_POST[pay]' Where username = '$user'";
+        $sql = "UPDATE log SET status = 'Lunas', tanggalbayar = '$_POST[pay]' Where username = '$user'";
         $query = mysqli_query($conn, $sql);
         if ($query) {
             $hapus = "DELETE FROM data_form WHERE username = '$user'";
@@ -124,7 +124,7 @@
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input class="form-control"  name="pay" type="date" name="tglbayar">
+                                    <input class="form-control datepicker" value="<?php echo date("Y-m-d"); ?>" min="<?php echo $rincian['tanggalbayar'];?>" name="pay" type="date" name="tglbayar" autocomplete="off">
                                 </div>
                             </div>              
                         </div>

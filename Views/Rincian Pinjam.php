@@ -6,8 +6,14 @@
 ?>
 
 <?php
-    $display = mysqli_query($conn, "SELECT rincian_pinjam.username, rincian_pinjam.tanggalpinjam, rincian_pinjam.tanggalbayar, rincian_pinjam.jumlah, rincian_pinjam.bunga, rincian_pinjam.total, approval.status_approve, data_pinjam.status FROM rincian_pinjam INNER JOIN data_pinjam ON data_pinjam.username = rincian_pinjam.username INNER JOIN approval ON approval.username = rincian_pinjam.username WHERE approval.username = '$user';");
+    $display = mysqli_query($conn, "SELECT * FROM rincian WHERE username = '$user';");
     $rincian = mysqli_fetch_array($display);
+    if ($rincian == 0) {
+        echo "<script>
+                alert('Tidak ada pinjaman'); 
+                document.location='homepage.php';
+                </script>";
+    }
 ?>
 
 

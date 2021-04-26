@@ -75,7 +75,7 @@
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input class="form-control"  type="date" name="tglpinjam">
+                                    <input class="form-control"  type="date" name="tglpinjam" min="<?php echo date("Y-m-d");?>">
                                 </div>
                             </div>
                             <div class="row mt-3 justify-content-center">
@@ -83,7 +83,7 @@
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input class="form-control"  type="date" name="tglbayar">
+                                    <input class="form-control"  type="date" name="tglbayar" min="<?php echo date("Y-m-d");?>">
                                 </div>
                             </div>
                             <div class="form-row mt-3 justify-content-center">

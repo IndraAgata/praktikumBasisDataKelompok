@@ -22,39 +22,39 @@
                         <div class="container px-5">
                             <div class="row gx-5 mt-3">
                               <div class="p-3 col">
-                                <input class="form-control" type="text" name="fname" placeholder="First Name">
+                                <input class="form-control" type="text" name="fname" placeholder="First Name" required>
                               </div>
                               <div class="p-3 col">
-                                <input class="form-control" type="text" name="lname" placeholder="Last Name">
+                                <input class="form-control" type="text" name="lname" placeholder="Last Name" required>
                               </div>
                               
                             </div>
                             <div class="row gx-5 my-2">
                                 <div class="p-3 col">
-                                    <input class="form-control" type="text" name="pekerjaan" placeholder="Pekerjaan">
+                                    <input class="form-control" type="text" name="pekerjaan" placeholder="Pekerjaan" required>
                                 </div>
                                  <div class="p-3 mx-4 col-lg-3">
-                                     <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="umur" placeholder="Umur">
+                                     <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="umur" placeholder="Umur" required>
                                  </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="p-3 col-lg-8">
-                                    <input class="form-control" type="text" name="email" placeholder="Email">
+                                    <input class="form-control" type="text" name="email" placeholder="Email"required>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="p-3 col-lg-8">
-                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="nomor" placeholder="Nomor Ponsel">
+                                    <input class="form-control" onkeypress="return onlyNumberKey(event)" type="text" name="nomor" placeholder="Nomor Ponsel"required>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="p-3 col-lg-8">
-                                    <input class="form-control" type="text" name="username" placeholder="Username">
+                                    <input class="form-control" type="text" name="username" placeholder="Username"required>
                                 </div>
                             </div>
                             <div class="row justify-content-center ">
                                 <div class="p-3 col-lg-8">
-                                    <input class="form-control" type="password" name="password" placeholder="Password">
+                                    <input class="form-control" type="password" name="password" placeholder="Password"required>
                                 </div>
                             </div>
                         </div>

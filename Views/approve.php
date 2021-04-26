@@ -50,6 +50,12 @@
             //tampilkan data 
             $display = mysqli_query($conn, "SELECT rincian_pinjam.username, data_pinjam.Nama, rincian_pinjam.tanggalpinjam, rincian_pinjam.tanggalbayar, rincian_pinjam.jumlah, rincian_pinjam.bunga, rincian_pinjam.total FROM rincian_pinjam Inner Join data_pinjam On rincian_pinjam.username = data_pinjam.username WHERE data_pinjam.username = '$_GET[name]';");
             $rincian = mysqli_fetch_array($display);
+            if ($rincian == 0) {
+                echo "<script>
+                        alert('Data sudah dihapus. Ini hanya log!'); 
+                        document.location='admin.php';
+                    </script>";
+            }
         }
       }
 ?>
