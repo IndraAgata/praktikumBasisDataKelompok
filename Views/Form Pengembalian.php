@@ -7,6 +7,12 @@
 <?php
     $display = mysqli_query($conn, "SELECT * FROM rincian_pinjam WHERE username = '$user'");
     $rincian = mysqli_fetch_array($display);
+    if ($rincian == 0) {
+        echo "<script>
+                alert('Tidak ada pinjaman'); 
+                document.location='homepage.php';
+                </script>";
+    }
     if (isset($_POST['bayar'])) {
         $sql = "UPDATE log SET status = 'Lunas', tanggalbayar = '$_POST[pay]' Where username = '$user'";
         $query = mysqli_query($conn, $sql);
