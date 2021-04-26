@@ -130,7 +130,7 @@
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-8">
-                                    <input class="form-control datepicker" value="<?php echo date("Y-m-d"); ?>" min="<?php echo $rincian['tanggalbayar'];?>" name="pay" type="date" name="tglbayar" autocomplete="off">
+                                    <input class="form-control datepicker" value="<?php echo date("Y-m-d"); ?>" min="<?php echo $rincian['tanggalpinjam'];?>" name="pay" type="date" name="tglbayar" autocomplete="off">
                                 </div>
                             </div>              
                         </div>
