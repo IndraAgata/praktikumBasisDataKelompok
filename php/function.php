@@ -225,4 +225,5 @@
         mysqli_stmt_close($stmt);
         header('Location: ../Views/Rincian Pinjam.php');
     }
+
 ?>

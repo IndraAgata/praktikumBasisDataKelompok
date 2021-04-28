@@ -71,7 +71,7 @@
                                     $no = 1;
                                     if (isset($_GET['hal'])) {
                                         if ($_GET['hal'] == "log") {
-                                            $tampil = mysqli_query($conn, "SELECT * FROM log");
+                                            $tampil = mysqli_query($conn, "SELECT * FROM log ORDER BY date(tanggalpinjam) DESC;");
                                         }
                                     }
                                     else {
