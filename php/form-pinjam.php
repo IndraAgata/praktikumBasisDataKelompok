@@ -19,7 +19,7 @@
         $log =mysqli_query($conn, $sql);
         rincian($conn, $username, $jumlah, $pinjam, $bayar, $bunga);
         data($conn, $username, $jumlah, $pinjam, $bayar, $bunga, $deskripsi, $jaminan);
-         
+
     }else{
         header('Location: ../Views/homepage.php');
     }

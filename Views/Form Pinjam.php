@@ -3,9 +3,15 @@
     include("../php/session.php");
     $tampil = mysqli_query($conn, "SELECT username, concat(firstname, ' ', lastname) AS Nama FROM data_pengguna WHERE username = '$user'");
     $data = mysqli_fetch_array($tampil);
+    //Check Apakah sudah meminjam
+    $check = mysqli_query($conn, "SELECT * FROM data_pinjam WHERE username = '$user'");
+    if ($check) {
+        echo "<script>
+            alert('Maaf anda sudah meminjam. Anda hanya bisa melakukan pinjaman sekali!'); 
+            document.location='../Views/homepage.php';
+            </script>";
+    }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
