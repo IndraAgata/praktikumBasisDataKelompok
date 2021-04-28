@@ -27,7 +27,8 @@
         }elseif ($_GET['hal'] =="deny") {
             $approve = mysqli_query($conn, "UPDATE approval set status_approve = 'Deny' WHERE username = '$_GET[id]'");
             if ($approve) {//Jika approve sukses
-            echo "<script>
+                $log = mysqli_query($conn, "UPDATE log SET status_approve = 'Deny' WHERE username = '$_GET[id]'");
+                echo "<script>
                         alert('Deny data sukses!'); 
                         document.location='admin.php';
                     </script>";
