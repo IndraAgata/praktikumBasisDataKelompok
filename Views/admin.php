@@ -87,7 +87,15 @@
                                         <td><?php echo $sql['status_approve'];?></td>
                                         <td><?php echo $sql['status']?></td>
                                         <td>
-                                            <a href="approve.php?hal=detail&name=<?=$sql['username']?>"><button class="btn btn-primary btn-sm">detail</button></a>
+                                            <?php
+                                                if (isset($_GET['hal'])) {
+                                                    if ($_GET['hal'] == 'log'){
+                                                               
+                                                    }
+                                                }else{
+                                                    echo "<a href='approve.php?hal=detail&name=$sql[username]'><button class='btn btn-primary btn-sm'>detail</button></a>";
+                                                }
+                                            ?>
                                         </td>
                                     </tr>
                                     <?php endwhile;?>

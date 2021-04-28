@@ -55,7 +55,7 @@
         <section class="Form my-4 mx-5">
             <div class="container">
                 <div class="main row no-gutters justify-content-center">
-                    <div class="col-lg-5 mx-4 mt-3">
+                    <div class="col-lg-5 mx-4 mt-2">
                         <h5 class="judul-user">Data Diri</h5> 
                         <div class="form-row justify-content-center">
                             <div class="col-lg-10 mt-3">
@@ -68,15 +68,23 @@
                             </div>
                         </div>   
                         <div class="row mt-3 justify-content-center">
-                            <label for="tglbayar">Status</label>
+                            <label>Status</label>
                         </div> 
                         <div class="form-row justify-content-center">
                             <div class="col-ms-2 mt-4">
                                 <h5 class="judul-user"><?php echo $rincian['status_approve'];?></hh5>
                             </div>
-                        </div>                    
+                        </div>
+                        <div class="row mt-2 justify-content-center">
+                            <label>Bayar Ke :</label>
+                            <h5 class="judul-user px-2">0812345678</hh5>     
+                        </div> 
+                        <div class="form-row justify-content-center">
+                            <img class="gopay" src="../img/GOPAY - IDNGRAFIS.svg" alt="Gopay">
+                            <img class="gopay" src="../img/Dana Logo Vector.svg" alt="Gopay">
+                        </div>     
                     </div>
-                    <div class="col-lg-5 mx-4 mt-3">
+                    <div class="col-lg-5 mx-4 mt-2">
                         <h5 class="judul-user">Data Peminjam Dana</h5>   
                         <div class="row mt-3 justify-content-center">
                             <label for="tglpinjam">Tanggal Pinjam</label>

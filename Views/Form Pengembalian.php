@@ -12,6 +12,21 @@
                 alert('Tidak ada pinjaman'); 
                 document.location='homepage.php';
                 </script>";
+    }else{
+        $sql = mysqli_query($conn,"SELECT * FROM approval WHERE username = '$user'");
+        $status = mysqli_fetch_array($sql);
+        //Cek Status
+        if ($status['status_approve'] == 'Waiting'){
+            echo "<script>
+                alert('Status Pinjaman $status[status_approve] atau Menunggu, Silahkan tunggu dan periksalah status Anda secara berkala'); 
+                document.location='homepage.php';
+                </script>";
+        }elseif ($status['status_approve'] == 'Deny'){
+            echo "<script>
+                alert('Status Pinjaman $status[status_approve] atau Ditolak, Anda tidak dapat melakukan pembayaran'); 
+                document.location='homepage.php';
+                </script>";
+        }
     }
     if (isset($_POST['bayar'])) {
         $sql = "UPDATE log SET status = 'Lunas', tanggalbayar = '$_POST[pay]' Where username = '$user'";
@@ -96,7 +111,15 @@
                                 <div class="col-lg-10 mt-3">
                                     <input class="form-control" type="text" name="nama" value="<?php echo $data['Nama'];?>"placeholder="Nama" disabled readonly>
                                 </div>
-                            </div>                    
+                            </div>  
+                            <div class="row mt-3 justify-content-center">
+                                <label>Bayar Ke :</label>
+                                <h5 class="judul-user px-2">0812345678</hh5>     
+                            </div> 
+                            <div class="form-row justify-content-center">
+                                <img class="gopay" src="../img/GOPAY - IDNGRAFIS.svg" alt="Gopay">
+                                <img class="gopay" src="../img/Dana Logo Vector.svg" alt="Gopay">
+                            </div>                  
                         </div>
                         <div class="col-lg-5 mx-4 mt-3">
                             <h5 class="judul-user">Data Pinjaman Dana</h5>

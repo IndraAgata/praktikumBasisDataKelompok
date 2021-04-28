@@ -102,3 +102,8 @@ a:link {
     border-radius: 30px;
     font-weight: bold;
 }
+
+.gopay{
+    size: 50%;
+    position: absolute;
+}
