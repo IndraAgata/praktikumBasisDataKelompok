@@ -10,24 +10,36 @@
         if ($_GET['hal'] == "approve") {
             //data akan di approve
             $approve = mysqli_query($conn, "UPDATE approval set status_approve = 'Approved' WHERE username = '$_GET[id]'");
-            if ($approve) {
-                $log = mysqli_query($conn, "UPDATE log SET status_approve = 'Approved' WHERE username = '$_GET[id]'");
-                if ($approve) {//Jika approve sukses
-                    echo "<script>
-                                alert('Approve data sukses!'); 
-                                document.location='admin.php';
-                            </script>";
-                    }else{//Jika approve Gagal
-                    echo "<script>
-                                alert('Approve data GAGAL!! ^_^'); 
-                                document.location='approve.php';
-                            </script>";
-                    }
-            }    
+            if ($approve) {//Jika approve sukses
+                //Cek log
+                $cek = mysqli_query($conn,"SELECT * FROM log");
+                $log = mysqli_fetch_array($cek);
+                if ($log == 0) {
+                    $log = mysqli_query($conn, "INSERT INTO log (username, tanggalpinjam, tanggalbayar, status, status_approve) SELECT * FROM admin_approve");
+                }else{
+                    $log = mysqli_query($conn, "UPDATE log SET status_approve = 'Approved' WHERE username = '$_GET[id]'");
+                }
+                echo "<script>
+                            alert('Approve data sukses!'); 
+                            document.location='admin.php';
+                        </script>";
+            }else{//Jika approve Gagal
+                echo "<script>
+                            alert('Approve data GAGAL!! ^_^'); 
+                            document.location='approve.php';
+                        </script>";
+                }    
         }elseif ($_GET['hal'] =="deny") {
             $approve = mysqli_query($conn, "UPDATE approval set status_approve = 'Deny' WHERE username = '$_GET[id]'");
             if ($approve) {//Jika approve sukses
-                $log = mysqli_query($conn, "UPDATE log SET status_approve = 'Deny' WHERE username = '$_GET[id]'");
+                //Cel log
+                $cek = mysqli_query($conn,"SELECT * FROM log");
+                $log = mysqli_fetch_array($cek);
+                if ($log == 0) {
+                    $log = mysqli_query($conn, "INSERT INTO log (username, tanggalpinjam, tanggalbayar, status, status_approve) SELECT * FROM admin_approve");
+                }else {
+                    $log = mysqli_query($conn, "UPDATE log SET status_approve = 'Deny' WHERE username = '$_GET[id]'");
+                }
                 echo "<script>
                         alert('Deny data sukses!'); 
                         document.location='admin.php';

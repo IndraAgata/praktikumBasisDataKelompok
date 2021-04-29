@@ -75,14 +75,18 @@
                                 <h5 class="judul-user"><?php echo $rincian['status_approve'];?></hh5>
                             </div>
                         </div>
-                        <div class="row mt-2 justify-content-center">
-                            <label>Bayar Ke :</label>
-                            <h5 class="judul-user px-2">0812345678</hh5>     
-                        </div> 
-                        <div class="form-row justify-content-center">
-                            <img class="gopay" src="../img/GOPAY - IDNGRAFIS.svg" alt="Gopay">
-                            <img class="gopay" src="../img/Dana Logo Vector.svg" alt="Gopay">
-                        </div>     
+                        <?php
+                            if($rincian['status_approve'] == 'Approved'){
+                                echo "<div class='row mt-2 justify-content-center'>
+                                        <label>Bayar Ke :</label>
+                                        <h5 class='judul-user px-2'>0812345678</hh5>     
+                                    </div> 
+                                    <div class='form-row justify-content-center'>
+                                        <img class='gopay' src='../img/GOPAY - IDNGRAFIS.svg' alt='Gopay'>
+                                        <img class='gopay' src='../img/Dana Logo Vector.svg' alt='Gopay'>
+                                    </div>";
+                            }
+                        ?>   
                     </div>
                     <div class="col-lg-5 mx-4 mt-2">
                         <h5 class="judul-user">Data Peminjam Dana</h5>   

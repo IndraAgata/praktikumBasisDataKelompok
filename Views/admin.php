@@ -49,9 +49,19 @@
                 <?php
                     if (isset($_GET['hal'])) {
                         if ($_GET['hal'] == 'log') {
+                            $sql = mysqli_query($conn, "SELECT * FROM log ORDER BY date(tanggalpinjam) DESC;");
+                            $tampil = mysqli_fetch_array($sql);
                             echo '<div class="row px-1 py-2">
-                            <a href="admin.php"><button class="btn2">Kembali</button></a>
-                        </div>';
+                                    <a href="admin.php"><button class="btn2">Kembali</button></a>
+                                    </div>';
+                            if ($tampil >= 1){
+                                echo '<div class="row px-5 py-2">
+                                        <a href="admin.php?hal=clear"><button class="btn2">Clear Log</button></a>
+                                    </div>';
+                            }
+                        }elseif ($_GET['hal'] == 'clear') {
+                            $sql = mysqli_query($conn, "DELETE FROM log");
+                            header('Location: admin.php');
                         }
                     }
                 ?>
@@ -59,13 +69,12 @@
                         <div class="table-responsive-md">
                             <table class="table table-borderless">
                                 <thead>
-                                <tr>
-                                    <th>Nama</th>
-                                    <th>Tanggal Pinjam</th>
-                                    <th>Tanggal Bayar</th>
-                                    <th class="rowspan colspan" colspan="2" rowspan="2">Status</th>
-                                    
-                                </tr>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>Tanggal Pinjam</th>
+                                        <th>Tanggal Bayar</th>
+                                        <th colspan="2">Status</th>      
+                                    </tr>
                                 </thead>
                                 <?php
                                     $no = 1;
