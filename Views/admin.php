@@ -140,6 +140,7 @@
                                         if ($_GET['hal'] == "log") {
                                             $tampil = mysqli_query($conn, "SELECT * FROM log ORDER BY date(tanggalpinjam) DESC;");
                                         }elseif($_GET['hal'] == "filter") {
+                                            //Filter
                                             if (isset($_POST['sort'])) {
                                                 if ($_POST['min'] && $_POST['max']) {
                                                     $tampil = mysqli_query($conn, "SELECT * FROM `data_pinjam` WHERE jumlah BETWEEN $_POST[min] and $_POST[max]");
@@ -162,6 +163,7 @@
                                     <tr>
                                         <?php
                                             if (isset($_GET['hal'])) {
+                                                //Tampil Header Tabel
                                                 if ($_GET['hal'] == 'filter'){
                                                     echo "<td>$sql[username]</td>
                                                     <td>$sql[jumlah]</td>
@@ -192,6 +194,7 @@
                                         
                                         <td>
                                             <?php
+                                                //Tombol detail
                                                 if (isset($_GET['hal'])) {
                                                     if ($_GET['hal'] == 'log'){
                                                                
