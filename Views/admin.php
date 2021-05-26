@@ -43,44 +43,114 @@
         <section class="Form my-4 mx-5">
             <div class="container">
                 <div class="main row no-gutters">
-                <div class="row px-5 py-2">
-                    <a href="admin.php?hal=log"><button class="btn2">Log</button></a>
-                </div>
-                <?php
-                    if (isset($_GET['hal'])) {
-                        if ($_GET['hal'] == 'log') {
-                            $sql = mysqli_query($conn, "SELECT * FROM log ORDER BY date(tanggalpinjam) DESC;");
-                            $tampil = mysqli_fetch_array($sql);
-                            echo '<div class="row px-1 py-2">
-                                    <a href="admin.php"><button class="btn2">Kembali</button></a>
-                                    </div>';
-                            if ($tampil >= 1){
-                                echo '<div class="row px-5 py-2">
-                                        <a href="admin.php?hal=clear"><button class="btn2">Clear Log</button></a>
-                                    </div>';
+                    <div class="row align-self-start">
+                        <div class="row px-5 py-2">
+                            <a href="admin.php?hal=log"><button class="btn2">Log</button></a>
+                        </div>
+                        
+                        <?php
+                            if (isset($_GET['hal'])) {
+                                if ($_GET['hal'] == 'log') {
+                                    $sql = mysqli_query($conn, "SELECT * FROM log ORDER BY date(tanggalpinjam) DESC;");
+                                    $tampil = mysqli_fetch_array($sql);
+                                    echo '<div class="row py-2">
+                                            <a href="admin.php"><button class="btn2">Kembali</button></a>
+                                            </div>';
+                                    if ($tampil >= 1){
+                                        echo '<div class="row px-5 py-2">
+                                                <a href="admin.php?hal=clear"><button class="btn2">Clear Log</button></a>
+                                            </div>';
+                                    }
+                                }elseif ($_GET['hal'] == 'clear') {
+                                    $sql = mysqli_query($conn, "DELETE FROM log");
+                                    header('Location: admin.php');
+                                }elseif ($_GET['hal'] == 'filter') {
+                                    echo '<div class="row py-2">
+                                            <a href="admin.php"><button class="btn2">Kembali</button></a>
+                                            </div>';
+                                    echo '<div class="row px-5 py-2">
+                                            <form action="" method="post">    
+                                                <div class="input-group mb-3">
+                                                    <input type="number" class="form-control" name="min" placeholder="Input Jumlah" aria-label="Jumlah">
+                                                    <span class="input-group-text">To</span>
+                                                    <input type="number" class="form-control" name="max" placeholder="Input Jumlah" aria-label="Jumlah">
+                                                    <button class="btn btn-outline-secondary" type="submit" name="sort">Filter</button>
+                                                </div>
+                                            </form>
+                                        </div>';
+                                }
+                            }else {
+                                echo '<div class="row py-2">
+                                        <a href="admin.php?hal=filter"><button class="btn2">Jumlah</button></a>
+                                        </div>';
                             }
-                        }elseif ($_GET['hal'] == 'clear') {
-                            $sql = mysqli_query($conn, "DELETE FROM log");
-                            header('Location: admin.php');
-                        }
-                    }
-                ?>
+                        ?>
+                        
+                    </div>
+                    <?php
+                        //Hitung Total
+                        $total = mysqli_query($conn, "SELECT Count(*) AS Total FROM admin_approve");
+                        $get = mysqli_fetch_assoc($total);
+                    ?>
+                    <div class="container mx-5 my-2">
+                        <p>Total : <?php echo"$get[Total]";?></p>    
+                    </div>
                     <div class="container align-justify-content-center">
                         <div class="table-responsive-md">
                             <table class="table table-borderless">
                                 <thead>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>Tanggal Pinjam</th>
-                                        <th>Tanggal Bayar</th>
-                                        <th colspan="2">Status</th>      
-                                    </tr>
+                                <?php
+                                    if (isset($_GET['hal'])){
+                                        if ($_GET['hal'] == 'log'){
+                                            echo '<tr>
+                                                    <th>Nama</th>
+                                                    <th>Jumlah</th>
+                                                    <th>Tanggal Bayar</th>
+                                                    <th colspan="2">Status</th>      
+                                                </tr>';
+                                        }elseif ($_GET['hal'] == 'filter') {
+                                            echo '<tr>
+                                                    <th>Nama</th>
+                                                    <th>Jumlah</th>
+                                                    <th>Tanggal Bayar</th>
+                                                    <th>Tanggal Bayar</th>
+                                                    <th>Status</th>      
+                                                </tr>';
+                                        }elseif (isset($_POST['sort'])) {
+                                            echo '<tr>
+                                                        <th>Nama</th>
+                                                        <th>Jumlah</th>
+                                                        <th>Tanggal Bayar</th>
+                                                        <th>Tanggal Bayar</th>
+                                                        <th>Status</th>      
+                                                    </tr>';
+                                        }
+                                    }else{
+                                        echo '<tr>
+                                                    <th>Nama</th>
+                                                    <th>Tanggal Pinjam</th>
+                                                    <th>Tanggal Bayar</th>
+                                                    <th colspan="2">Status</th>      
+                                                </tr>';
+                                    }
+                                ?>
                                 </thead>
                                 <?php
-                                    $no = 1;
                                     if (isset($_GET['hal'])) {
                                         if ($_GET['hal'] == "log") {
                                             $tampil = mysqli_query($conn, "SELECT * FROM log ORDER BY date(tanggalpinjam) DESC;");
+                                        }elseif($_GET['hal'] == "filter") {
+                                            if (isset($_POST['sort'])) {
+                                                if ($_POST['min'] && $_POST['max']) {
+                                                    $tampil = mysqli_query($conn, "SELECT * FROM `data_pinjam` WHERE jumlah BETWEEN $_POST[min] and $_POST[max]");
+                                                }elseif ($_POST['max']) {
+                                                    $tampil = mysqli_query($conn, "SELECT * FROM `data_pinjam` WHERE jumlah = $_POST[max]");
+                                                }elseif ($_POST['min']) {
+                                                    $tampil = mysqli_query($conn, "SELECT * FROM `data_pinjam` WHERE jumlah = $_POST[min]");
+                                                }
+                                            }else {
+                                                $tampil = mysqli_query($conn, "SELECT * FROM data_pinjam ORDER BY date(tanggalpinjam) DESC;");
+                                            }
                                         }
                                     }
                                     else {
@@ -90,17 +160,46 @@
                                 ?>
                                 <tbody>
                                     <tr>
-                                        <td><?php echo $sql['username'];?></td>
-                                        <td><?php echo $sql['tanggalpinjam'];?></td>
-                                        <td><?php echo $sql['tanggalbayar'];?></td>
-                                        <td><?php echo $sql['status_approve'];?></td>
-                                        <td><?php echo $sql['status']?></td>
+                                        <?php
+                                            if (isset($_GET['hal'])) {
+                                                if ($_GET['hal'] == 'filter'){
+                                                    echo "<td>$sql[username]</td>
+                                                    <td>$sql[jumlah]</td>
+                                                    <td>$sql[tanggalpinjam]</td>
+                                                    <td>$sql[tanggalbayar]</td>
+                                                    <td>$sql[status]</td>";
+                                                }elseif ($_GET['hal'] == 'log') {
+                                                    echo "<td>$sql[username]</td>
+                                                            <td>$sql[tanggalpinjam]</td>
+                                                            <td>$sql[tanggalbayar]</td>
+                                                            <td>$sql[status_approve]</td>
+                                                            <td>$sql[status]</td>";
+                                                }
+                                            }elseif (isset($_POST['sort'])) {
+                                                echo "<td>$sql[username]</td>
+                                                    <td>$sql[jumlah]</td>
+                                                    <td>$sql[tanggalpinjam]</td>
+                                                    <td>$sql[tanggalbayar]</td>
+                                                    <td>$sql[status]</td>";
+                                            } else {
+                                                echo "<td>$sql[username]</td>
+                                                <td>$sql[tanggalpinjam]</td>
+                                                <td>$sql[tanggalbayar]</td>
+                                                <td>$sql[status_approve]</td>
+                                                <td>$sql[status]</td>";
+                                            }
+                                        ?>
+                                        
                                         <td>
                                             <?php
                                                 if (isset($_GET['hal'])) {
                                                     if ($_GET['hal'] == 'log'){
                                                                
+                                                    }elseif ($_GET['hal'] == 'filter') {
+                                                        echo "<a href='approve.php?hal=detail&name=$sql[username]'><button class='btn btn-primary btn-sm'>detail</button></a>";
                                                     }
+                                                }elseif (isset($_POST['sort'])) {
+                                                    echo "<a href='approve.php?hal=detail&name=$sql[username]'><button class='btn btn-primary btn-sm'>detail</button></a>";
                                                 }else{
                                                     echo "<a href='approve.php?hal=detail&name=$sql[username]'><button class='btn btn-primary btn-sm'>detail</button></a>";
                                                 }

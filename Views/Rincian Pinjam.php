@@ -116,7 +116,7 @@
                         </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-10 mt-3">
-                                    <input class="form-control" type="text" name="total" value="<?php echo$rincian['jumlah']?>" placeholder="Total Bayar" disabled readonly>
+                                    <input class="form-control" type="text" name="total" value="<?php echo$rincian['total']?>" placeholder="Total Bayar" disabled readonly>
                                 </div>
                             </div> 
                             <div class="row mt-3 justify-content-center">

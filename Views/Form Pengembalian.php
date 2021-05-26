@@ -31,6 +31,7 @@
     if (isset($_POST['bayar'])) {
         $sql = "UPDATE log SET status = 'Lunas', tanggalbayar = '$_POST[pay]' Where username = '$user'";
         $query = mysqli_query($conn, $sql);
+        //Triggers
         if ($query) {
             $hapus = "DELETE FROM data_form WHERE username = '$user'";
             $delete = mysqli_query($conn, $hapus);
