@@ -59,8 +59,11 @@
                                     if ($tampil >= 1){
                                         echo '<div class="row px-5 py-2">
                                                 <a href="admin.php?hal=clear"><button class="btn2">Clear Log</button></a>
-                                            </div>';
+                                            </div>';        
                                     }
+                                    echo '<div class="row py-2">
+                                            <a href="admin.php?hal=cari"><button class="btn2">Group By</button></a>
+                                            </div>';
                                 }elseif ($_GET['hal'] == 'clear') {
                                     $sql = mysqli_query($conn, "DELETE FROM log");
                                     header('Location: admin.php');
@@ -92,9 +95,16 @@
                         $total = mysqli_query($conn, "SELECT Count(*) AS Total FROM admin_approve");
                         $get = mysqli_fetch_assoc($total);
                     ?>
-                    <div class="container mx-5 my-2">
-                        <p>Total : <?php echo"$get[Total]";?></p>    
-                    </div>
+                    <?php
+                        if (isset($_GET['hal'])) {
+                            # code...
+                        }else{
+                            echo "<div class='container mx-5 my-2'>
+                                        <p>Total :$get[Total]</p>    
+                                    </div>";
+                        }
+                    ?>
+                    
                     <div class="container align-justify-content-center">
                         <div class="table-responsive-md">
                             <table class="table table-borderless">
@@ -115,6 +125,11 @@
                                                     <th>Tanggal Bayar</th>
                                                     <th>Tanggal Bayar</th>
                                                     <th>Status</th>      
+                                                </tr>';
+                                        }elseif ($_GET['hal'] == 'cari') {
+                                            echo '<tr>
+                                                    <th>Total</th>
+                                                    <th>Tanggal Pinjam</th>      
                                                 </tr>';
                                         }elseif (isset($_POST['sort'])) {
                                             echo '<tr>
@@ -152,6 +167,8 @@
                                             }else {
                                                 $tampil = mysqli_query($conn, "SELECT * FROM data_pinjam ORDER BY date(tanggalpinjam) DESC;");
                                             }
+                                        }elseif ($_GET['hal'] == 'cari'){
+                                            $tampil = mysqli_query($conn, "SELECT COUNT(id) AS Total, tanggalpinjam FROM log GROUP BY tanggalpinjam;");
                                         }
                                     }
                                     else {
@@ -176,6 +193,9 @@
                                                             <td>$sql[tanggalbayar]</td>
                                                             <td>$sql[status_approve]</td>
                                                             <td>$sql[status]</td>";
+                                                }elseif ($_GET['hal'] == 'cari') {
+                                                    echo "<td>$sql[Total]</td>
+                                                            <td>$sql[tanggalpinjam]</td>";
                                                 }
                                             }elseif (isset($_POST['sort'])) {
                                                 echo "<td>$sql[username]</td>
