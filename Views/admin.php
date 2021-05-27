@@ -49,6 +49,7 @@
                         </div>
                         
                         <?php
+                        //Tombol atas
                             if (isset($_GET['hal'])) {
                                 if ($_GET['hal'] == 'log') {
                                     $sql = mysqli_query($conn, "SELECT * FROM log ORDER BY date(tanggalpinjam) DESC;");
@@ -86,8 +87,18 @@
                                 echo '<div class="row py-2">
                                         <a href="admin.php?hal=filter"><button class="btn2">Jumlah</button></a>
                                         </div>';
+                                echo '<div class="row px-5 py-2">
+                                <form action="" method="post">
+                                    <div class="input-group mb-3">
+                                            <input type="text" class="form-control" placeholder="Cari" aria-label="Cari" name="user" aria-describedby="button-addon2">
+                                            <button class="btn btn-outline-secondary" type="submit" name="search">Cari</button>
+                                    </div>
+                                </form>
+                            </div>';
                             }
                         ?>
+                        
+                        
                         
                     </div>
                     <?php
@@ -140,6 +151,15 @@
                                                         <th>Status</th>      
                                                     </tr>';
                                         }
+                                    }elseif (isset($_POST['search'])) {
+                                        echo '<tr>
+                                                <th>Username</th>
+                                                <th>Nama</th>
+                                                <th>Jumlah</th>
+                                                <th>Tanggal Pinjam</th>
+                                                <th>Tanggal Bayar</th>
+                                                <th colspan="2">Status</th>      
+                                            </tr>';
                                     }else{
                                         echo '<tr>
                                                     <th>Nama</th>
@@ -170,8 +190,15 @@
                                         }elseif ($_GET['hal'] == 'cari'){
                                             $tampil = mysqli_query($conn, "SELECT COUNT(id) AS Total, tanggalpinjam FROM log GROUP BY tanggalpinjam;");
                                         }
-                                    }
-                                    else {
+                                    }elseif (isset($_POST['search'])) {
+                                        if ($_POST['user'] == NULL) {
+                                            echo "<script>
+                                                        alert('Pencarian Kosong!'); 
+                                                        document.location='../Views/admin.php';
+                                                </script>";
+                                        }
+                                        $tampil = mysqli_query($conn, "SELECT * FROM data_pinjam WHERE Nama LIKE '%$_POST[user]%'");
+                                    }else {
                                         $tampil = mysqli_query($conn, "SELECT * FROM admin_approve");
                                     }
                                     while ($sql = mysqli_fetch_array($tampil)):
@@ -180,7 +207,7 @@
                                     <tr>
                                         <?php
                                             if (isset($_GET['hal'])) {
-                                                //Tampil Header Tabel
+                                                //Tampil Tabel
                                                 if ($_GET['hal'] == 'filter'){
                                                     echo "<td>$sql[username]</td>
                                                     <td>$sql[jumlah]</td>
@@ -203,6 +230,13 @@
                                                     <td>$sql[tanggalpinjam]</td>
                                                     <td>$sql[tanggalbayar]</td>
                                                     <td>$sql[status]</td>";
+                                            }elseif (isset($_POST['search'])) {
+                                                echo "<td>$sql[username]</td>
+                                                <td>$sql[Nama]</td>
+                                                <td>$sql[jumlah]</td>
+                                                <td>$sql[tanggalpinjam]</td>
+                                                <td>$sql[tanggalbayar]</td>
+                                                <td>$sql[status]</td>";
                                             } else {
                                                 echo "<td>$sql[username]</td>
                                                 <td>$sql[tanggalpinjam]</td>
@@ -222,6 +256,8 @@
                                                         echo "<a href='approve.php?hal=detail&name=$sql[username]'><button class='btn btn-primary btn-sm'>detail</button></a>";
                                                     }
                                                 }elseif (isset($_POST['sort'])) {
+                                                    echo "<a href='approve.php?hal=detail&name=$sql[username]'><button class='btn btn-primary btn-sm'>detail</button></a>";
+                                                }elseif (isset($_POST['search'])) {
                                                     echo "<a href='approve.php?hal=detail&name=$sql[username]'><button class='btn btn-primary btn-sm'>detail</button></a>";
                                                 }else{
                                                     echo "<a href='approve.php?hal=detail&name=$sql[username]'><button class='btn btn-primary btn-sm'>detail</button></a>";
