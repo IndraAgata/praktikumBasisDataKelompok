@@ -162,7 +162,7 @@
                                             </tr>';
                                     }else{
                                         echo '<tr>
-                                                    <th>Nama</th>
+                                                    <th>Username</th>
                                                     <th>Tanggal Pinjam</th>
                                                     <th>Tanggal Bayar</th>
                                                     <th colspan="2">Status</th>      
