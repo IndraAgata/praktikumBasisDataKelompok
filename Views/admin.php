@@ -124,14 +124,14 @@
                                     if (isset($_GET['hal'])){
                                         if ($_GET['hal'] == 'log'){
                                             echo '<tr>
-                                                    <th>Nama</th>
+                                                    <th>Username</th>
                                                     <th>Jumlah</th>
                                                     <th>Tanggal Bayar</th>
                                                     <th colspan="2">Status</th>      
                                                 </tr>';
                                         }elseif ($_GET['hal'] == 'filter') {
                                             echo '<tr>
-                                                    <th>Nama</th>
+                                                    <th>Username</th>
                                                     <th>Jumlah</th>
                                                     <th>Tanggal Bayar</th>
                                                     <th>Tanggal Bayar</th>
@@ -144,7 +144,7 @@
                                                 </tr>';
                                         }elseif (isset($_POST['sort'])) {
                                             echo '<tr>
-                                                        <th>Nama</th>
+                                                        <th>Username</th>
                                                         <th>Jumlah</th>
                                                         <th>Tanggal Bayar</th>
                                                         <th>Tanggal Bayar</th>
